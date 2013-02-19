@@ -63,10 +63,21 @@ class NeuronFitness(fitness.BitSequenceFitness):
             self.data = map(float, data.split(' '))
 
     def calc_spikes(self, data):
+        '''Retrieve the peaks in the spike train'''
         spikes = []
-        for i, val in enumerate(data):
-            if val > 35:
-                spikes.append((i, val))
+        max_spike = 0
+        last_spike = -5
+        for i in range(len(data)):
+            if i - last_spike > 2:
+                if i - 2 >= 0:
+                    max_spike = max(max(data[i-2:i]), max(data[i+1:i+3]))
+                elif i - 2 == -2:
+                    max_spike = max(data[i+1:i+3])
+                else:
+                    max_spike = max(max(data[i-1:i]), max(data[i+1:i+3]))
+                if data[i] >= max_spike:
+                    spikes.append((i, data[i]))
+                    last_spike = i
         return spikes
 
     def spike_penalty(self, spike1, spike2):
@@ -79,7 +90,7 @@ class WDM(NeuronFitness):
         assert len(spike) == len(self.data), 'Data and spike is different'
         s = 0
         for i in range(len(spike)):
-            s += math.abs(spike[i] - self.data[i])**2
+            s += abs(spike[i] - self.data[i])**2
         return math.sqrt(s) / len(spike)
 
 class STDM(NeuronFitness):
@@ -89,7 +100,7 @@ class STDM(NeuronFitness):
         spike_data = self.calc_spikes(self.data)
         s = 0
         for i in range(min(len(spike_pheno), len(spike_data))):
-            s += math.abs(spike_pheno[i][0] - spike_data[i][0])**2
+            s += abs(spike_pheno[i][0] - spike_data[i][0])**2
         s += self.spike_penalty(spike_pheno, spike_data)
         return math.sqrt(s) / min(len(spike_pheno), len(spike_data))
 
@@ -100,7 +111,7 @@ class SIDM(NeuronFitness):
         spike_data = self.calc_spikes(self.data)
         s = 0
         for i in range(1, min(len(spike_pheno), len(spike_data))):
-            s += math.abs((spike_pheno[i][0]- spike_pheno[i - 1][0]) -
+            s += abs((spike_pheno[i][0]- spike_pheno[i - 1][0]) -
                     (spike_data[i][0] - spike_data[i - 1][0]))**2
         s += self.spike_penalty(spike_pheno, spike_data)
         return math.sqrt(s) / min(len(spike_pheno), len(spike_data))
