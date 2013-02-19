@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+import math
+
 import phenotypes
 import fitness
 
@@ -60,6 +62,13 @@ class NeuronFitness(fitness.BitSequenceFitness):
             data = f.readline()
             self.data = map(float, data.split(' '))
 
+    def calc_spikes(self, data):
+        spikes = []
+        for i, val in enumerate(data):
+            if val > 35:
+                spikes.append((i, val))
+        return spikes
+
 class WDM(NeuronFitness):
     '''Waveform Distance Metric fitness'''
     def sub_eval(self, pheno, population):
@@ -67,6 +76,26 @@ class WDM(NeuronFitness):
         assert len(spike) == len(self.data), 'Data and spike is different'
         s = 0
         for i in range(len(spike)):
-            s += spike[i] - self.data[i]
-        return s / len(spike)
+            s += math.abs(spike[i] - self.data[i])**2
+        return math.sqrt(s) / len(spike)
 
+class STDM(NeuronFitness):
+    '''Spike Time Distance Metric fitness'''
+    def sub_eval(self, pheno, population):
+        spike_pheno = self.calc_spikes(pheno.get_spike_train())
+        spike_data = self.calc_spikes(self.data)
+        s = 0
+        for i in range(min(len(spike_pheno), len(spike_data))):
+            s += math.abs(spike_pheno[i][0] - spike_data[i][0])**2
+        return math.sqrt(s) / min(len(spike_pheno), len(spike_data))
+
+class SIDM(NeuronFitness):
+    '''Spike Interval Distance Metric fitness'''
+    def sub_eval(self, pheno, population):
+        spike_pheno = self.calc_spikes(pheno.get_spike_train())
+        spike_data = self.calc_spikes(self.data)
+        s = 0
+        for i in range(1, min(len(spike_pheno), len(spike_data))):
+            s += math.abs((spike_pheno[i][0]- spike_pheno[i - 1][0]) -
+                    (spike_data[i][0] - spike_data[i - 1][0]))**2
+        return math.sqrt(s) / min(len(spike_pheno), len(spike_data))
