@@ -28,7 +28,7 @@ class NeuronPheno(phenotypes.Phenotype):
         self.__spike_train = None
 
     def get_config():
-        return self.__a, self.__b, self.__c, self.__d, self.__k
+        return self.__a, self.__b, self.__c, self.__d, self.__k, self.__time
 
     def get_spike_train():
         if self.__spike_train:
@@ -48,3 +48,25 @@ class NeuronPheno(phenotypes.Phenotype):
                     v = self.__c
                     u = self.__u + self.__d
             return self.get_spike_train()
+
+class NeuronFitness(fitness.BitSequenceFitness):
+    def __init__(self, comp_filename):
+        self.filename = comp_filename
+        self.data = None
+        self.__read_comparison()
+
+    def __read_comparison(self):
+        with open(self.filename, 'r') as f:
+            data = f.readline()
+            self.data = map(float, data.split(' '))
+
+class WDM(NeuronFitness):
+    '''Waveform Distance Metric fitness'''
+    def sub_eval(self, pheno, population):
+        spike = pheno.get_spike_train()
+        assert len(spike) == len(self.data), 'Data and spike is different'
+        s = 0
+        for i in range(len(spike)):
+            s += spike[i] - self.data[i]
+        return s / len(spike)
+
