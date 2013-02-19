@@ -80,8 +80,11 @@ class NeuronFitness(fitness.BitSequenceFitness):
                     last_spike = i
         return spikes
 
-    def spike_penalty(self, spike1, spike2):
-        return 0
+    def spike_penalty(self, spike1, spike2, spike1_len, spike2_len):
+        if len(spike1) < len(spike2):
+            spike1, spike2 = spike2, spike1
+            spike1_len, spike2_len = spike2_len, spike1_len
+        return float((len(spike1) - len(spike2))*spike1_len) / float(2*spike1_len)
 
 class WDM(NeuronFitness):
     '''Waveform Distance Metric fitness'''
@@ -101,7 +104,8 @@ class STDM(NeuronFitness):
         s = 0
         for i in range(min(len(spike_pheno), len(spike_data))):
             s += abs(spike_pheno[i][0] - spike_data[i][0])**2
-        s += self.spike_penalty(spike_pheno, spike_data)
+        s += self.spike_penalty(spike_pheno, spike_data, len(pheno.get_spike_train()),
+                len(self.data))
         return math.sqrt(s) / min(len(spike_pheno), len(spike_data))
 
 class SIDM(NeuronFitness):
@@ -113,5 +117,6 @@ class SIDM(NeuronFitness):
         for i in range(1, min(len(spike_pheno), len(spike_data))):
             s += abs((spike_pheno[i][0]- spike_pheno[i - 1][0]) -
                     (spike_data[i][0] - spike_data[i - 1][0]))**2
-        s += self.spike_penalty(spike_pheno, spike_data)
+        s += self.spike_penalty(spike_pheno, spike_data, len(pheno.get_spike_train()),
+                len(self.data))
         return math.sqrt(s) / min(len(spike_pheno), len(spike_data))
