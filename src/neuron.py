@@ -75,7 +75,7 @@ class NeuronFitness(fitness.BitSequenceFitness):
                     max_spike = max(data[i+1:i+3])
                 else:
                     max_spike = max(max(data[i-1:i]), max(data[i+1:i+3]))
-                if data[i] >= max_spike:
+                if data[i] >= max_spike > 0:
                     spikes.append((i, data[i]))
                     last_spike = i
         return spikes
