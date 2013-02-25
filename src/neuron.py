@@ -24,20 +24,21 @@ class ConvertNeuron(phenotypes.ConvertGenome):
 
     def convert(self, gene):
         gene_val = gene.get_value()
-        a_perc = grey_to_int(gene_val[0, 10]) / float(1023)
-        b_perc = grey_to_int(gene_val[10, 20]) / float(1023)
-        c_perc = grey_to_int(gene_val[20, 30]) / float(1023)
-        d_perc = grey_to_int(gene_val[30, 40]) / float(1023)
-        k_perc = grey_to_int(gene_val[40, 50]) / float(1023)
+        a_perc = self.grey_to_int(gene_val[0:10]) / float(1023)
+        b_perc = self.grey_to_int(gene_val[10:20]) / float(1023)
+        c_perc = self.grey_to_int(gene_val[20:30]) / float(1023)
+        d_perc = self.grey_to_int(gene_val[30:40]) / float(1023)
+        k_perc = self.grey_to_int(gene_val[40:50]) / float(1023)
         a = a_perc*(0.2 - 0.001) + 0.001
         b = b_perc*(0.3 - 0.01) + 0.01
         c = c_perc*(-30 + 80) - 80
         d = d_perc*(10 - 0.1) + 0.1
         k = k_perc*(1.0 - 0.01) + 0.01
-        return NeuronPheno(gene, self.fit, a, b, c, d, k, self.__timesteps)
+        return NeuronPheno(gene, self.fitness, a, b, c, d, k, self.__timesteps)
 
 class NeuronPheno(phenotypes.Phenotype):
     def __init__(self, gene, fit, a, b, c, d, k, timesteps):
+        super(NeuronPheno, self).__init__(gene, fit)
         assert 0.001 <= a <= 0.2, 'a is out of range'
         assert 0.01 <= b <= 0.3, 'b is out of range'
         assert -80 <= c <= -30, 'c is out of range'
@@ -52,16 +53,17 @@ class NeuronPheno(phenotypes.Phenotype):
         self.__time = timesteps
         self.__spike_train = None
 
-    def get_config():
+    def get_config(self):
         return self.__a, self.__b, self.__c, self.__d, self.__k, self.__time
 
     def __str__(self):
         return 'Neuron {0!s}, fit: {1}'.format(self.get_config(), self.fitness(None))
 
-    def get_spike_train():
+    def get_spike_train(self):
         if self.__spike_train:
             return self.__spike_train[:]
         else:
+            self.__spike_train = []
             u = 0
             v = -60
             dv = 0
@@ -74,7 +76,7 @@ class NeuronPheno(phenotypes.Phenotype):
                 self.__spike_train.append(v)
                 if v > 35:
                     v = self.__c
-                    u = self.__u + self.__d
+                    u += self.__d
             return self.get_spike_train()
 
 class NeuronFitness(fitness.BitSequenceFitness):

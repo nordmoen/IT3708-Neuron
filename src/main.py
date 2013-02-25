@@ -12,7 +12,7 @@ import fitness
 import logger
 import select_mech
 import select_protocol
-import blotto
+import neuron
 
 def create_parser():
     parser = ArgumentParser(description='Evolutionary Algorithm implementation')
@@ -20,8 +20,8 @@ def create_parser():
     parser.add_argument('bits', type=int, default=20, help='The number of bits in the vectors')
     parser.add_argument('size', type=int, default=20, help='The size of each population')
     parser.add_argument('--seed', type=int, default=42, help='Seed for the random number generator')
-    parser.add_argument('--cross_rate', type=float, default=0.5,
-            help='The rate of crossover, a number between (0.0, 0.5]')
+    parser.add_argument('--cross_rate', type=float, default=1.0,
+            help='The rate of crossover, a number between [0.0, 1.0], 1.0 is never, 0.0 is always')
     parser.add_argument('--cover_rate', type=float, default=0.5,
             help='The amount to crossover, 0.5 is then a one point crossover')
     parser.add_argument('--mutation', type=float, default=0.015,
@@ -60,24 +60,21 @@ def create_parser():
 
     fit_parser = parser.add_argument_group('Fitness', 'The fitness function')
     fit_parser.add_argument('fitness', help='The fitness function to use',
-            choices=['max_fitness', 'random_fitness', 'blotto_fit'], default='max_fitness')
-    fit_parser.add_argument('--target', help='The random target one want to try and match')
+            choices=['stdm', 'sidm', 'wdm'], default='wdm')
 
     convert_parser = parser.add_argument_group('Convert', 'The conversion function')
     convert_parser.add_argument('convert', help='The conversion function',
-            choices=['convert-genome', 'convert-blotto'])
+            choices=['convert_neuron'])
 
     log_parser = parser.add_argument_group('Logger', 'The logger function')
     log_parser.add_argument('log_type', help='The type of logger to use',
-            choices=['cmd', 'plot', 'plotto'], default='cmd')
+            choices=['cmd', 'plot'], default='cmd')
     log_parser.add_argument('--filename', help=('When using a plot logger' +
             ' this must be used.'))
-    blott_parser = parser.add_argument_group('Blotto', 'Special configuration' +
-            ' options for blotto')
-    blott_parser.add_argument('--r', type=float, help='The redeployment factor',
-            default=0.2)
-    blott_parser.add_argument('--l', type=float, help='The loss fraction',
-            default=0.0)
+
+    neuron_parser = parser.add_argument_group('Neuron', 'Neuron specific configuration')
+    neuron_parser.add_argument('data_file',
+            help='The data file containing the target spike train')
     return parser
 
 def get_protocol(args, select_alg):
@@ -114,24 +111,22 @@ def get_logger(args):
 def get_fit(args):
     '''Everyone should'''
     fit_func = args.fitness
-    if fit_func == 'max_fitness':
-        return fitness.OneMaxFitness()
-    elif fit_func == 'random_fitness':
-        return fitness.RandomBitSequenceFitness(bitarray(args.target))
-    elif fit_func == 'blotto_fit':
-        return blotto.BlottoFitness(args.bits, args.r, args.l)
+    if fit_func == 'stdm':
+        return neuron.STDM(args.data_file)
+    elif fit_func == 'sidm':
+        return neuron.SIDM(args.data_file)
+    elif fit_func == 'wdm':
+        return neuron.WDM(args.data_file)
 
 def get_convert(args, fit):
-    if args.convert == 'convert-genome':
-        return ConvertGenome(fit)
+    if args.convert == 'convert_neuron':
+        return neuron.ConvertNeuron(fit)
     elif args.convert == 'convert-blotto':
         return blotto.ConvertBlotto(fit, args.bits)
 
 def create_initial_population(args, conv):
     pop = []
     frac = 1
-    if type(conv) == blotto.ConvertBlotto:
-        frac = 5
     for i in range(args.size):
         pop.append(Genome([randint(0, 1) for i in range(args.bits*frac)],
             args.cover_rate, args.cross_rate, args.mutation, conv))
