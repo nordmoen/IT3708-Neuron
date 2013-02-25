@@ -29,6 +29,11 @@ class ConvertNeuron(phenotypes.ConvertGenome):
         c_perc = grey_to_int(gene_val[20, 30]) / float(1023)
         d_perc = grey_to_int(gene_val[30, 40]) / float(1023)
         k_perc = grey_to_int(gene_val[40, 50]) / float(1023)
+        a = a_perc*(0.2 - 0.001) + 0.001
+        b = b_perc*(0.3 - 0.01) + 0.01
+        c = c_perc*(-30 + 80) - 80
+        d = d_perc*(10 - 0.1) + 0.1
+        k = k_perc*(1.0 - 0.01) + 0.01
         return NeuronPheno(gene, self.fit, a, b, c, d, k, self.__timesteps)
 
 class NeuronPheno(phenotypes.Phenotype):
@@ -170,4 +175,3 @@ class NeuroGenome(genome.Genome):
     def __repr__(self):
         return "NeuroGenome({!r}, {!r}, {!r}, {})".format(self.val,
                 self.cross_rate, self.mute_rate, self.convert_func)
-
