@@ -12,13 +12,23 @@ class ConvertNeuron(phenotypes.ConvertGenome):
         super(ConvertNeuron, self).__init__(fitness)
         self.__timesteps = timesteps
 
+    def grey_to_int(self, bits):
+        b = [bits[0]]
+        shift = b[-1]
+        for i in bits[1:]:
+            b.append(shift ^ i)
+        s = 0
+        for i in range(len(b), 0, -1):
+            s += b[i-1] * 2**(len(b)-i)
+        return s
+
     def convert(self, gene):
-        gene_str = gene.to01()
-        a_perc = int(gene_str[0, 10], 2) / float(1023)
-        b_perc = int(gene_str[10, 20], 2) / float(1023)
-        c_perc = int(gene_str[20, 30], 2) / float(1023)
-        d_perc = int(gene_str[30, 40], 2) / float(1023)
-        k_perc = int(gene_str[40, 50], 2) / float(1023)
+        gene_val = gene.get_value()
+        a_perc = grey_to_int(gene_val[0, 10]) / float(1023)
+        b_perc = grey_to_int(gene_val[10, 20]) / float(1023)
+        c_perc = grey_to_int(gene_val[20, 30]) / float(1023)
+        d_perc = grey_to_int(gene_val[30, 40]) / float(1023)
+        k_perc = grey_to_int(gene_val[40, 50]) / float(1023)
         return NeuronPheno(gene, self.fit, a, b, c, d, k, self.__timesteps)
 
 class NeuronPheno(phenotypes.Phenotype):
@@ -156,12 +166,6 @@ class NeuroGenome(genome.Genome):
         return (NeuroGenome(my_val, self.cover_rate, self.cross_rate,
             self.mute_rate, self.convert_func), NeuroGenome(other_val,
                  self.cover_rate, self.cross_rate, self.mute_rate, self.convert_func))
-
-    def pos_mutation(self):
-        for i in range(0, len(self), 10):
-            for k in range(i+3, i+10):
-                if random() < self.mute_rate:
-                    self.val[k] = not self.val[k]
 
     def __repr__(self):
         return "NeuroGenome({!r}, {!r}, {!r}, {})".format(self.val,
