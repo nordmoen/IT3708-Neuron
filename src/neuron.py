@@ -97,23 +97,21 @@ class NeuronFitness(fitness.BitSequenceFitness):
     def calc_spikes(self, data):
         '''Retrieve the peaks in the spike train'''
         spikes = []
-        max_spike = 0
+        found = False
         last_spike = -5
         data_len = len(data)
         for i in range(data_len):
             if i - last_spike > 2:
-                if i - 2 >= 0:
-                    if data_len - i - 1 >= 2:
-                        max_spike = max(max(data[i-2:i]), max(data[i+1:i+3]))
-                    elif data_len - i - 1 == 1:
-                        max_spike = max(max(data[i-2:i]), data[i+1])
-                    else:
-                        max_spike = max(data[i-2:i])
-                elif i - 2 == -2:
-                    max_spike = max(data[i+1:i+3])
-                else:
-                    max_spike = max(max(data[i-1:i]), max(data[i+1:i+3]))
-                if data[i] >= max_spike > 0:
+                start = i - 1 if i - 1 >= 0 else 0
+                end = i + 2 if i + 2 < data_len else data_len - 1
+                found = False
+                for j in range(start, end + 1):
+                    if i == j:
+                        continue
+                    if data[j] > data[i]:
+                        found = True
+                        break
+                if not found:
                     spikes.append((i, data[i]))
                     last_spike = i
         return spikes
