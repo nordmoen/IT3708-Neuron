@@ -1,9 +1,11 @@
 #!/usr/bin/python
 
 import math
+from random import randrange, random
 
 import phenotypes
 import fitness
+import genome
 
 class ConvertNeuron(phenotypes.ConvertGenome):
     def __init__(self, fitness, timesteps=1001):
@@ -11,7 +13,13 @@ class ConvertNeuron(phenotypes.ConvertGenome):
         self.__timesteps = timesteps
 
     def convert(self, gene):
-        pass
+        gene_str = gene.to01()
+        a_perc = int(gene_str[0, 10], 2) / float(1023)
+        b_perc = int(gene_str[10, 20], 2) / float(1023)
+        c_perc = int(gene_str[20, 30], 2) / float(1023)
+        d_perc = int(gene_str[30, 40], 2) / float(1023)
+        k_perc = int(gene_str[40, 50], 2) / float(1023)
+        return NeuronPheno(gene, self.fit, a, b, c, d, k, self.__timesteps)
 
 class NeuronPheno(phenotypes.Phenotype):
     def __init__(self, gene, fit, a, b, c, d, k, timesteps):
@@ -120,3 +128,42 @@ class SIDM(NeuronFitness):
         s += self.spike_penalty(spike_pheno, spike_data, len(pheno.get_spike_train()),
                 len(self.data))
         return math.sqrt(s) / min(len(spike_pheno), len(spike_data))
+
+class NeuroGenome(genome.Genome):
+    '''Use 10 bits per variable in the neuron, this means that in order to
+    ensure that crossover passes on proper genes we need to re implement
+    crossover and mutation. Mutation need to be change so that a bit change does
+    not change the phenotype as much as 50%. This could happen if mutation changes
+    the first bit of one of the 10 bits which could change a value from 0 to 512.
+    This genome will also just do 1 point crossover per variable.'''
+    def __init__(self, val, cross_rate, mute_rate, convert_func):
+        super(NeuroGenome, self).__init__(val, 0.0, cross_rate, mute_rate,
+                convert_func)
+        assert len(self) == 50, 'The length is not correct for a neuron genome'
+
+    def crossover(self, other):
+        assert other, 'Other can\'t be nothing'
+        my_val = self.get_value()
+        other_val = other.get_value()
+        my_cpy = self.get_value()
+        other_cpy = other.get_value()
+        if random() < self.cross_rate:
+            for i in range(0, self.len, 10):
+                my_val[i:i+5] = other_cpy[i:i+5]
+        if random() < self.cross_rate:
+            for i in range(0, self.len, 10):
+                other_val[i+5:i+10] = my_cpy[i+5:i+10]
+        return (NeuroGenome(my_val, self.cover_rate, self.cross_rate,
+            self.mute_rate, self.convert_func), NeuroGenome(other_val,
+                 self.cover_rate, self.cross_rate, self.mute_rate, self.convert_func))
+
+    def pos_mutation(self):
+        for i in range(0, len(self), 10):
+            for k in range(i+3, i+10):
+                if random() < self.mute_rate:
+                    self.val[k] = not self.val[k]
+
+    def __repr__(self):
+        return "NeuroGenome({!r}, {!r}, {!r}, {})".format(self.val,
+                self.cross_rate, self.mute_rate, self.convert_func)
+
