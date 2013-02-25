@@ -55,6 +55,9 @@ class NeuronPheno(phenotypes.Phenotype):
     def get_config():
         return self.__a, self.__b, self.__c, self.__d, self.__k, self.__time
 
+    def __str__(self):
+        return 'Neuron {0!s}, fit: {1}'.format(self.get_config(), self.fitness(None))
+
     def get_spike_train():
         if self.__spike_train:
             return self.__spike_train[:]
