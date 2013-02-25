@@ -68,7 +68,7 @@ def create_parser():
 
     log_parser = parser.add_argument_group('Logger', 'The logger function')
     log_parser.add_argument('log_type', help='The type of logger to use',
-            choices=['cmd', 'plot'], default='cmd')
+            choices=['cmd', 'plot', 'neuron_plot'], default='cmd')
     log_parser.add_argument('--filename', help=('When using a plot logger' +
             ' this must be used.'))
 
@@ -105,8 +105,8 @@ def get_logger(args):
         return logger.CmdLogger()
     elif log_type == 'plot':
         return logger.PlotLogger(args.filename)
-    elif log_type == 'plotto':
-        return blotto.BlottoLogger(args.filename)
+    elif log_type == 'neuron_plot':
+        return neuron.NeuronLogger(args.filename, args)
 
 def get_fit(args):
     '''Everyone should'''
