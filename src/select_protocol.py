@@ -53,7 +53,7 @@ class OverProduction(FullReplacement):
         next_pop = super(OverProduction,
             self).create_population(len(population)*self.num_children,
                 population)
-        return Population(self.select_alg.sample(len(population), next_pop))
+        return Population(self.select_alg.sample(len(population), next_pop.get()))
 
 class GenerationalMixing(FullReplacement):
     def sub_select(self, population):
@@ -61,4 +61,4 @@ class GenerationalMixing(FullReplacement):
             self).create_population(len(population)*self.num_children,
                 population)
         next_pop.extend(population.get())
-        return Population(self.select_alg.sample(len(population), next_pop))
+        return Population(self.select_alg.sample(len(population), next_pop.get()))

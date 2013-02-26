@@ -35,7 +35,7 @@ def create_parser():
             default='full_generational')
     proto_parser.add_argument('--num_parents', type=float, help=('The percentage of' +
             ' parents select for the mating'), default=0.5)
-    proto_parser.add_argument('--num_children', type=int, help=('The percentage of' +
+    proto_parser.add_argument('--num_children', type=float, help=('The percentage of' +
         ' children created during mating'), default=0.5)
 
     mech_parser = parser.add_argument_group('Mechanism', 'The selection mechanism to use')
@@ -75,6 +75,10 @@ def create_parser():
     neuron_parser = parser.add_argument_group('Neuron', 'Neuron specific configuration')
     neuron_parser.add_argument('data_file',
             help='The data file containing the target spike train')
+    neuron_parser.add_argument('--wdm_sample', type=int, default=1,
+            help='The distance between WDM sample points')
+    neuron_parser.add_argument('--bits_per_num', type=int, default=10,
+            help='The number of bits per number, must correlate with "bits" above')
     return parser
 
 def get_protocol(args, select_alg):
@@ -116,20 +120,20 @@ def get_fit(args):
     elif fit_func == 'sidm':
         return neuron.SIDM(args.data_file)
     elif fit_func == 'wdm':
-        return neuron.WDM(args.data_file)
+        return neuron.WDM(args.data_file, args.wdm_sample)
 
 def get_convert(args, fit):
     if args.convert == 'convert_neuron':
-        return neuron.ConvertNeuron(fit)
+        return neuron.ConvertNeuron(fit, bits_per_num=args.bits_per_num)
     elif args.convert == 'convert-blotto':
         return blotto.ConvertBlotto(fit, args.bits)
 
 def create_initial_population(args, conv):
     pop = []
-    frac = 1
+    frac = args.bits_per_num
     for i in range(args.size):
-        pop.append(Genome([randint(0, 1) for i in range(args.bits*frac)],
-            args.cover_rate, args.cross_rate, args.mutation, conv))
+        pop.append(neuron.NeuroGenome([randint(0, 1) for i in range(args.bits*frac)],
+            args.cross_rate, args.mutation, conv, args.bits_per_num))
     return Population(map(lambda x: x.convert(), pop))
 
 def main():

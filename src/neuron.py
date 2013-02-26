@@ -10,11 +10,14 @@ import genome
 import logger
 
 class ConvertNeuron(phenotypes.ConvertGenome):
-    def __init__(self, fitness, timesteps=1001):
+    def __init__(self, fitness, timesteps=1001, bits_per_num=20):
         super(ConvertNeuron, self).__init__(fitness)
         self.__timesteps = timesteps
+        self.bits = bits_per_num
+        self.max_val = float(2**bits_per_num - 1)
 
     def grey_to_int(self, bits):
+        '''Interpret the bits as if they were grey code'''
         b = [bits[0]]
         shift = b[-1]
         for i in bits[1:]:
@@ -26,11 +29,11 @@ class ConvertNeuron(phenotypes.ConvertGenome):
 
     def convert(self, gene):
         gene_val = gene.get_value()
-        a_perc = self.grey_to_int(gene_val[0:10]) / float(1023)
-        b_perc = self.grey_to_int(gene_val[10:20]) / float(1023)
-        c_perc = self.grey_to_int(gene_val[20:30]) / float(1023)
-        d_perc = self.grey_to_int(gene_val[30:40]) / float(1023)
-        k_perc = self.grey_to_int(gene_val[40:50]) / float(1023)
+        a_perc = self.grey_to_int(gene_val[0:self.bits]) / self.max_val
+        b_perc = self.grey_to_int(gene_val[self.bits:2*self.bits]) / self.max_val
+        c_perc = self.grey_to_int(gene_val[2*self.bits:3*self.bits]) / self.max_val
+        d_perc = self.grey_to_int(gene_val[3*self.bits:4*self.bits]) / self.max_val
+        k_perc = self.grey_to_int(gene_val[4*self.bits:5*self.bits]) / self.max_val
         a = a_perc*(0.2 - 0.001) + 0.001
         b = b_perc*(0.3 - 0.01) + 0.01
         c = c_perc*(-30 + 80) - 80
@@ -72,14 +75,13 @@ class NeuronPheno(phenotypes.Phenotype):
             du = 0
             for i in range(self.__time):
                 dv = 0.1 * (self.__k * (v**2) + 5*v + 140 - u + 10)
-                du = (self.__a/10) * (self.__b*v - u)
+                du = (self.__a/10.0) * (self.__b*v - u)
                 v += dv
                 u += du
                 self.__spike_train.append(v)
                 if v > 35:
                     v = self.__c
                     u += self.__d
-                    self.__spike_train[-1] = 35
             return self.get_spike_train()
 
 class NeuronFitness(fitness.BitSequenceFitness):
@@ -92,7 +94,7 @@ class NeuronFitness(fitness.BitSequenceFitness):
     def __read_comparison(self):
         with open(self.filename, 'r') as f:
             data = f.readline()
-            self.data = map(float, data.split(' '))
+            self.data = map(float, data.strip().split(' '))
 
     def calc_spikes(self, data):
         '''Retrieve the peaks in the spike train'''
@@ -101,36 +103,41 @@ class NeuronFitness(fitness.BitSequenceFitness):
         last_spike = -5
         data_len = len(data)
         for i in range(data_len):
-            if i - last_spike > 2:
-                start = i - 1 if i - 1 >= 0 else 0
-                end = i + 2 if i + 2 < data_len else data_len - 1
-                found = False
-                for j in range(start, end + 1):
-                    if i == j:
-                        continue
-                    if data[j] > data[i]:
-                        found = True
-                        break
-                if not found:
-                    spikes.append((i, data[i]))
-                    last_spike = i
+            if data[i] >= 35:
+                if i - last_spike > 2:
+                    start = i - 1 if i - 1 >= 0 else 0
+                    end = i + 2 if i + 2 < data_len else data_len - 1
+                    found = False
+                    for j in range(start, end + 1):
+                        if i == j:
+                            continue
+                        if data[j] > data[i]:
+                            found = True
+                            break
+                    if not found:
+                        spikes.append((i, data[i]))
+                        last_spike = i
         return spikes
 
-    def spike_penalty(self, spike1, spike2, spike1_len, spike2_len):
+    def spike_penalty(self, spike1, spike2, train1_len, train2_len):
         if len(spike1) < len(spike2):
             spike1, spike2 = spike2, spike1
-            spike1_len, spike2_len = spike2_len, spike1_len
-        return float((len(spike1) - len(spike2))*spike1_len) / float(2*spike1_len)
+            train1_len, train2_len = train2_len, train1_len
+        return float((len(spike1) - len(spike2))*train1_len) / float(2*train1_len)
 
 class WDM(NeuronFitness):
     '''Waveform Distance Metric fitness'''
+    def __init__(self, filename, sample_interval=5):
+        super(WDM, self).__init__(filename)
+        self.__sample = sample_interval
+
     def sub_eval(self, pheno, population):
         spike = pheno.get_spike_train()
         assert len(spike) == len(self.data), 'Data and spike is different'
         s = 0
-        for i in range(len(spike)-1):
+        for i in range(0, len(spike), self.__sample):
             s += abs(spike[i] - self.data[i])**2
-        return -(math.sqrt(s) / len(spike))
+        return 1.0 / (math.sqrt(s) / (len(spike) / float(self.__sample)))
 
 class STDM(NeuronFitness):
     '''Spike Time Distance Metric fitness'''
@@ -138,12 +145,12 @@ class STDM(NeuronFitness):
         spike_pheno = self.calc_spikes(pheno.get_spike_train())
         spike_data = self.spike_data
         s = 0
-        for i in range(min(len(spike_pheno), len(spike_data))):
+        n = min(len(spike_pheno), len(spike_data))
+        for i in range(n):
             s += abs(spike_pheno[i][0] - spike_data[i][0])**2
         s += self.spike_penalty(spike_pheno, spike_data, len(pheno.get_spike_train()),
                 len(self.data))
-        n = min(len(spike_pheno), len(spike_data))
-        return -math.sqrt(s) / (n if n > 0 else 1)
+        return 1.0 / (math.sqrt(s) / (float(n) if n > 0 else 1.0))
 
 class SIDM(NeuronFitness):
     '''Spike Interval Distance Metric fitness'''
@@ -156,19 +163,17 @@ class SIDM(NeuronFitness):
                     (spike_data[i][0] - spike_data[i - 1][0]))**2
         s += self.spike_penalty(spike_pheno, spike_data, len(pheno.get_spike_train()),
                 len(self.data))
-        return -(math.sqrt(s) / min(len(spike_pheno), len(spike_data)))
+        return 1.0 / (math.sqrt(s) / float(min(len(spike_pheno), len(spike_data))))
 
 class NeuroGenome(genome.Genome):
-    '''Use 10 bits per variable in the neuron, this means that in order to
+    '''Use X bits per variable in the neuron, this means that in order to
     ensure that crossover passes on proper genes we need to re implement
-    crossover and mutation. Mutation need to be change so that a bit change does
-    not change the phenotype as much as 50%. This could happen if mutation changes
-    the first bit of one of the 10 bits which could change a value from 0 to 512.
-    This genome will also just do 1 point crossover per variable.'''
-    def __init__(self, val, cross_rate, mute_rate, convert_func):
+    crossover. This genome will also just do 1 point crossover per variable.'''
+    def __init__(self, val, cross_rate, mute_rate, convert_func, bits_per_num=20):
         super(NeuroGenome, self).__init__(val, 0.0, cross_rate, mute_rate,
                 convert_func)
-        assert len(self) == 50, 'The length is not correct for a neuron genome'
+        assert len(self) == 5*bits_per_num, 'The length is not correct for a neuron genome'
+        self.bits = bits_per_num
 
     def crossover(self, other):
         assert other, 'Other can\'t be nothing'
@@ -182,9 +187,9 @@ class NeuroGenome(genome.Genome):
         if random() < self.cross_rate:
             for i in range(0, self.len, 10):
                 other_val[i+5:i+10] = my_cpy[i+5:i+10]
-        return (NeuroGenome(my_val, self.cover_rate, self.cross_rate,
-            self.mute_rate, self.convert_func), NeuroGenome(other_val,
-                 self.cover_rate, self.cross_rate, self.mute_rate, self.convert_func))
+        return (NeuroGenome(my_val, self.cover_rate,
+            self.mute_rate, self.convert_func, self.bits), NeuroGenome(other_val,
+                 self.cross_rate, self.mute_rate, self.convert_func, self.bits))
 
     def __repr__(self):
         return "NeuroGenome({!r}, {!r}, {!r}, {})".format(self.val,
@@ -218,7 +223,7 @@ class NeuronLogger(logger.FitnessLogger):
         res = None
         with open(filename, 'r') as f:
             res = f.readline()
-        return map(float, res.split(' '))
+        return map(float, res.strip().split(' '))
 
     def configure_plotter(self, g):
         g('set style line 80 lt rgb "#808080"')
@@ -247,8 +252,7 @@ class NeuronLogger(logger.FitnessLogger):
             g('set terminal pdfcairo rounded enhanced')
             g('set output {}_fitness.pdf'.format(self.filename))
         g.plot(stdev_plot, avg_plot, best_plot)
-        if self.__inter:
-            raw_input('Press enter to continue...')
+        return g
 
     def plot_spike(self):
         g = Gnuplot.Gnuplot()
@@ -266,8 +270,7 @@ class NeuronLogger(logger.FitnessLogger):
             g('set terminal pdfcairo rounded enhanced')
             g('set output {}_spike.pdf'.format(self.filename))
         g.plot(my_spike, target_spike)
-        if self.__inter:
-            raw_input('Press enter to continue...')
+        return g
 
     def write_config(self):
         if not self.__inter:
@@ -279,6 +282,8 @@ class NeuronLogger(logger.FitnessLogger):
                     self.__best)
 
     def sub_finish(self):
-        self.plot_fitness()
-        self.plot_spike()
+        a = self.plot_fitness()
+        b = self.plot_spike()
         self.write_config()
+        if self.__inter:
+            raw_input('Press enter to continue...')

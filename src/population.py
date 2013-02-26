@@ -32,3 +32,7 @@ class Population(object):
 
     def __len__(self):
         return len(self.__vals)
+
+    def extend(self, li):
+        assert li, 'List is None'
+        self.__vals.extend(li)
