@@ -10,7 +10,7 @@ import genome
 import logger
 
 class ConvertNeuron(phenotypes.ConvertGenome):
-    def __init__(self, fitness, timesteps=1001, bits_per_num=20):
+    def __init__(self, fitness, timesteps=1000, bits_per_num=20):
         super(ConvertNeuron, self).__init__(fitness)
         self.__timesteps = timesteps
         self.bits = bits_per_num
@@ -66,14 +66,14 @@ class NeuronPheno(phenotypes.Phenotype):
 
     def get_spike_train(self):
         if self.__spike_train:
-            return self.__spike_train[:]
+            return self.__spike_train
         else:
-            self.__spike_train = []
+            self.__spike_train = [-60]
             u = 0
             v = -60
             dv = 0
             du = 0
-            for i in range(self.__time):
+            for i in range(1, self.__time + 1):
                 dv = 0.1 * (self.__k * (v**2) + 5*v + 140 - u + 10)
                 du = (self.__a/10.0) * (self.__b*v - u)
                 v += dv
@@ -85,11 +85,14 @@ class NeuronPheno(phenotypes.Phenotype):
             return self.get_spike_train()
 
 class NeuronFitness(fitness.BitSequenceFitness):
-    def __init__(self, comp_filename):
+    def __init__(self, comp_filename, p=2):
+        super(NeuronFitness, self).__init__()
         self.filename = comp_filename
         self.data = None
         self.__read_comparison()
         self.spike_data = self.calc_spikes(self.data)
+        print self.spike_data
+        self.p = p
 
     def __read_comparison(self):
         with open(self.filename, 'r') as f:
@@ -103,7 +106,7 @@ class NeuronFitness(fitness.BitSequenceFitness):
         last_spike = -5
         data_len = len(data)
         for i in range(data_len):
-            if data[i] >= 35:
+            if data[i] >= 0:
                 if i - last_spike > 2:
                     start = i - 1 if i - 1 >= 0 else 0
                     end = i + 2 if i + 2 < data_len else data_len - 1
@@ -119,16 +122,17 @@ class NeuronFitness(fitness.BitSequenceFitness):
                         last_spike = i
         return spikes
 
-    def spike_penalty(self, spike1, spike2, train1_len, train2_len):
-        if len(spike1) < len(spike2):
-            spike1, spike2 = spike2, spike1
-            train1_len, train2_len = train2_len, train1_len
-        return float((len(spike1) - len(spike2))*train1_len) / float(2*train1_len)
+    def spike_penalty(self, spike1_len, spike2_len, train_len):
+        res = abs(spike1_len - spike2_len) * float(train_len)
+        m = min(spike1_len, spike2_len)
+        if m:
+            res /= 2*m
+        return res
 
 class WDM(NeuronFitness):
     '''Waveform Distance Metric fitness'''
-    def __init__(self, filename, sample_interval=5):
-        super(WDM, self).__init__(filename)
+    def __init__(self, filename, sample_interval=1, p=2):
+        super(WDM, self).__init__(filename, p)
         self.__sample = sample_interval
 
     def sub_eval(self, pheno, population):
@@ -136,8 +140,11 @@ class WDM(NeuronFitness):
         assert len(spike) == len(self.data), 'Data and spike is different'
         s = 0
         for i in range(0, len(spike), self.__sample):
-            s += abs(spike[i] - self.data[i])**2
-        return 1.0 / (math.sqrt(s) / (len(spike) / float(self.__sample)))
+            s += abs(spike[i] - self.data[i])**self.p
+        m = len(spike) / float(self.__sample)
+        s = s**(1.0 / self.p)
+        s /= float(m)
+        return 1.0 / s
 
 class STDM(NeuronFitness):
     '''Spike Time Distance Metric fitness'''
@@ -147,10 +154,11 @@ class STDM(NeuronFitness):
         s = 0
         n = min(len(spike_pheno), len(spike_data))
         for i in range(n):
-            s += abs(spike_pheno[i][0] - spike_data[i][0])**2
-        s += self.spike_penalty(spike_pheno, spike_data, len(pheno.get_spike_train()),
-                len(self.data))
-        return 1.0 / (math.sqrt(s) / (float(n) if n > 0 else 1.0))
+            s += abs(spike_pheno[i][0] - spike_data[i][0])**self.p
+        s += self.spike_penalty(len(spike_pheno), len(spike_data), len(self.data))
+        s = s ** (1.0 / self.p)
+        s /= float(n) if n > 0 else 1.0
+        return 1.0 / s
 
 class SIDM(NeuronFitness):
     '''Spike Interval Distance Metric fitness'''
@@ -160,10 +168,12 @@ class SIDM(NeuronFitness):
         s = 0
         for i in range(1, min(len(spike_pheno), len(spike_data))):
             s += abs((spike_pheno[i][0]- spike_pheno[i - 1][0]) -
-                    (spike_data[i][0] - spike_data[i - 1][0]))**2
+                    (spike_data[i][0] - spike_data[i - 1][0]))**self.p
         s += self.spike_penalty(spike_pheno, spike_data, len(pheno.get_spike_train()),
                 len(self.data))
-        return 1.0 / (math.sqrt(s) / float(min(len(spike_pheno), len(spike_data))))
+        s = s ** (1.0 / self.p)
+        s /= float(min(len(spike_pheno), len(spike_data)))
+        return 1.0 / s
 
 class NeuroGenome(genome.Genome):
     '''Use X bits per variable in the neuron, this means that in order to

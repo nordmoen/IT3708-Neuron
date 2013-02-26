@@ -79,6 +79,8 @@ def create_parser():
             help='The distance between WDM sample points')
     neuron_parser.add_argument('--bits_per_num', type=int, default=10,
             help='The number of bits per number, must correlate with "bits" above')
+    neuron_parser.add_argument('--p', type=int, default=2,
+            help='P, the number to raise the different tdms to')
     return parser
 
 def get_protocol(args, select_alg):
@@ -116,11 +118,11 @@ def get_fit(args):
     '''Everyone should'''
     fit_func = args.fitness
     if fit_func == 'stdm':
-        return neuron.STDM(args.data_file)
+        return neuron.STDM(args.data_file, p=args.p)
     elif fit_func == 'sidm':
-        return neuron.SIDM(args.data_file)
+        return neuron.SIDM(args.data_file, p=args.p)
     elif fit_func == 'wdm':
-        return neuron.WDM(args.data_file, args.wdm_sample)
+        return neuron.WDM(args.data_file, args.wdm_sample, p=args.p)
 
 def get_convert(args, fit):
     if args.convert == 'convert_neuron':
@@ -146,7 +148,7 @@ def main():
     conv = get_convert(args, fit)
     log = get_logger(args)
     init = create_initial_population(args, conv)
-    evolution_loop(init, proto, log, args.loops, args.stop_cond)
+    evolution_loop(init, proto, log, fit, args.loops, args.stop_cond)
 
 if __name__ == '__main__':
     main()
