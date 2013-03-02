@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.2.9)  2 MAR 2013 15:55
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.2.9)  2 MAR 2013 17:17
 entering extended mode
  %&-line parsing enabled.
 **report.tex
@@ -604,8 +604,7 @@ Package: pdflscape 2008/08/11 v0.10 Landscape pages in PDF (HO)
 Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 75.
-)
-No file report.aux.
+) (./report.aux)
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
@@ -624,6 +623,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 21.
 LaTeX Font Info:    ... okay on input line 21.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 21.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 21.
+
 (/usr/share/texmf-texlive/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
@@ -645,12 +645,13 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
 LaTeX Info: Redefining \ref on input line 21.
 LaTeX Info: Redefining \pageref on input line 21.
+ (./report.out)
+(./report.out)
 \@outlinefile=\write3
 \openout3 = `report.out'.
 
 \AtBeginShipoutBox=\box28
-
-(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+ (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count105
 \scratchdimen=\dimen113
@@ -679,30 +680,67 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./description.tex
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/ppl/b/n' tried instead on input line 1.
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 21.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 21.
+
+(/usr/share/texmf-texlive/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+) (../src/neuron.py
+LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <9> not available
+(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 179.
+LaTeX Font Info:    Try loading font information for TS1+pcr on input line 180.
+
+
+(/usr/share/texmf-texlive/tex/latex/psnfss/ts1pcr.fd
+File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 )pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.82 \end{document}
-                    [1] (./report.aux)
+l.206     def 
+              __repr__(self): [1])
+LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 23.
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+Overfull \hbox (5.50604pt too wide) in paragraph at lines 35--46
+\OT1/ppl/m/n/10 vari-ables. This was done to make in-her-i-tance stronger. The 
+change in code(listed
+ []
 
- ) 
+<crossover.pdf, id=59, 725.71124pt x 251.94125pt>
+File: crossover.pdf Graphic file (type pdf)
+ <use crossover.pdf>
+Overfull \hbox (17.85474pt too wide) in paragraph at lines 49--50
+ [][] 
+ []
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 62.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 62.
+[2 <./crossover.pdf>] (../src/neuron.py)) [3] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 6757 strings out of 494937
- 96899 string characters out of 1180324
- 175615 words of memory out of 3000000
- 9829 multiletter control sequences out of 15000+50000
- 11098 words of font info for 32 fonts, out of 3000000 for 9000
+ 7527 strings out of 494937
+ 105124 string characters out of 1180324
+ 457909 words of memory out of 3000000
+ 10511 multiletter control sequences out of 15000+50000
+ 19353 words of font info for 52 fonts, out of 3000000 for 9000
  118 hyphenation exceptions out of 8191
- 38i,6n,40p,272b,323s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texli
-ve/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texmf-texlive/fonts/type1/ur
-w/palatino/uplr8a.pfb>
-Output written on report.pdf (2 pages, 30784 bytes).
+ 38i,8n,40p,272b,2064s stack positions out of 5000i,500n,10000p,200000b,50000s
+pdfTeX warning (d
+est): name{Hfootnote.1} has been referenced but does not exist, replaced by a f
+ixed one
+
+{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive
+/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/c
+ourier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/courier/ucrro8a.pfb
+></usr/share/texmf-texlive/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texm
+f-texlive/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texmf-texlive/fonts/t
+ype1/urw/palatino/uplri8a.pfb>
+Output written on report.pdf (4 pages, 120305 bytes).
 PDF statistics:
- 24 PDF objects out of 1000 (max. 8388607)
- 3 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 139 PDF objects out of 1000 (max. 8388607)
+ 57 named destinations out of 1000 (max. 500000)
+ 30 words of extra memory for PDF output out of 10000 (max. 10000000)
 

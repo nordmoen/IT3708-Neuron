@@ -192,12 +192,13 @@ class NeuroGenome(genome.Genome):
         other_val = other.get_value()
         my_cpy = self.get_value()
         other_cpy = other.get_value()
+        half_bits = self.bits / 2
         if random() < self.cross_rate:
-            for i in range(0, self.len, 10):
-                my_val[i:i+5] = other_cpy[i:i+5]
+            for i in range(0, self.len, self.bits):
+                my_val[i:i+half_bits] = other_cpy[i:i+half_bits]
         if random() < self.cross_rate:
-            for i in range(0, self.len, 10):
-                other_val[i+5:i+10] = my_cpy[i+5:i+10]
+            for i in range(0, self.len, self.bits):
+                other_val[i+half_bits:i+self.bits] = my_cpy[i+half_bits:i+self.bits]
         return (NeuroGenome(my_val, self.cover_rate,
             self.mute_rate, self.convert_func, self.bits), NeuroGenome(other_val,
                  self.cross_rate, self.mute_rate, self.convert_func, self.bits))

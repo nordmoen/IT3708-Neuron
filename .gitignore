@@ -36,3 +36,8 @@ nosetests.xml
 
 #VIM:
 *.swp
+
+#Latex:
+*.aux
+*.log
+*.out
