@@ -91,7 +91,6 @@ class NeuronFitness(fitness.BitSequenceFitness):
         self.data = None
         self.__read_comparison()
         self.spike_data = self.calc_spikes(self.data)
-        print self.spike_data
         self.p = p
 
     def __read_comparison(self):
@@ -155,8 +154,8 @@ class STDM(NeuronFitness):
         n = min(len(spike_pheno), len(spike_data))
         for i in range(n):
             s += abs(spike_pheno[i][0] - spike_data[i][0])**self.p
-        s += self.spike_penalty(len(spike_pheno), len(spike_data), len(self.data))
         s = s ** (1.0 / self.p)
+        s += self.spike_penalty(len(spike_pheno), len(spike_data), len(self.data))
         s /= float(n) if n > 0 else 1.0
         return 1.0 / s
 
@@ -166,13 +165,15 @@ class SIDM(NeuronFitness):
         spike_pheno = self.calc_spikes(pheno.get_spike_train())
         spike_data = self.spike_data
         s = 0
-        for i in range(1, min(len(spike_pheno), len(spike_data))):
+        n = min(len(spike_pheno), len(spike_data))
+        for i in range(1, n):
             s += abs((spike_pheno[i][0]- spike_pheno[i - 1][0]) -
                     (spike_data[i][0] - spike_data[i - 1][0]))**self.p
-        s += self.spike_penalty(spike_pheno, spike_data, len(pheno.get_spike_train()),
-                len(self.data))
         s = s ** (1.0 / self.p)
-        s /= float(min(len(spike_pheno), len(spike_data)))
+        s += self.spike_penalty(len(spike_pheno), len(spike_data), len(self.data))
+        n -= 1
+        if n:
+            s /= float(n)
         return 1.0 / s
 
 class NeuroGenome(genome.Genome):
