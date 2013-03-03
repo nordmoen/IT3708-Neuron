@@ -192,13 +192,13 @@ class NeuroGenome(genome.Genome):
         other_val = other.get_value()
         my_cpy = self.get_value()
         other_cpy = other.get_value()
-        half_bits = self.bits / 2
+        double_bits = self.bits * 2
         if random() < self.cross_rate:
-            for i in range(0, self.len, self.bits):
-                my_val[i:i+half_bits] = other_cpy[i:i+half_bits]
+            for i in range(0, self.len, double_bits):
+                my_val[i:i+self.bits] = other_cpy[i:i+self.bits]
         if random() < self.cross_rate:
-            for i in range(0, self.len, self.bits):
-                other_val[i+half_bits:i+self.bits] = my_cpy[i+half_bits:i+self.bits]
+            for i in range(0, self.len, double_bits):
+                other_val[i+self.bits:i+double_bits] = my_cpy[i+self.bits:i+double_bits]
         return (NeuroGenome(my_val, self.cover_rate,
             self.mute_rate, self.convert_func, self.bits), NeuroGenome(other_val,
                  self.cross_rate, self.mute_rate, self.convert_func, self.bits))
@@ -245,7 +245,7 @@ class NeuronLogger(logger.FitnessLogger):
         g('set grid back linestyle 81')
         g('set xtics nomirror')
         g('set ytics nomirror')
-        g('set key bottom right')
+        g('set key top left')
         return g
 
     def plot_fitness(self):
@@ -262,7 +262,7 @@ class NeuronLogger(logger.FitnessLogger):
                 title='Best', with_='lines')
         if not self.__inter:
             g('set terminal pdfcairo rounded enhanced')
-            g('set output {}_fitness.pdf'.format(self.filename))
+            g('set output "{}_fitness.pdf"'.format(self.filename))
         g.plot(stdev_plot, avg_plot, best_plot)
         return g
 
@@ -280,14 +280,14 @@ class NeuronLogger(logger.FitnessLogger):
                 title='Target', with_='lines')
         if not self.__inter:
             g('set terminal pdfcairo rounded enhanced')
-            g('set output {}_spike.pdf'.format(self.filename))
+            g('set output "{}_spike.pdf"'.format(self.filename))
         g.plot(my_spike, target_spike)
         return g
 
     def write_config(self):
         if not self.__inter:
             with open('{}_conf.txt'.format(self.filename), 'w') as f:
-                f.writeline('{0!s}\n{1!s}\n'.format(self.__args,
+                f.write('{0!s}\n{1!s}\n'.format(self.__args,
                     self.__best))
         else:
             print '{0!s}\n{1!s}\n'.format(self.__args,

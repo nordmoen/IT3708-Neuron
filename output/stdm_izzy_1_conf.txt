@@ -1,0 +1,2 @@
+Namespace(bits=5, bits_per_num=35, convert='convert_neuron', cover_rate=0.5, cross_rate=0.8, data_file='training data/izzy-train1.dat', e=0.02, elite=3, filename='stdm_izzy_1', fitness='stdm', k=5, log_type='neuron_plot', loops=350, max=1.5, mech='tournament', min=0.5, mutation=0.1, num_children=0.5, num_parents=0.5, p=2, protocol='full_generational', seed=42, size=50, stop_cond=None, wdm_sample=1)
+Neuron (0.03231770752825302, 0.04418818318500964, -50.924143600013466, 1.1294955466649699, 0.04127812791270199, 1000), fit: 0.339422116651

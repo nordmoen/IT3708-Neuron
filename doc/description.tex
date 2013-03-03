@@ -5,7 +5,7 @@ code not that much had to be changed apart from some minor changes to achieve
 better performance. As with the last project when needing to adapt the EA to a
 new problem one has to extend some core classes for which the default behaviour
 is not appropriate. For this project all the extended code can be found in the
-file \textit{neuron\.py} which contains all the code to simulate the task at
+file \textit{neuron.py} which contains all the code to simulate the task at
 hand.
 
 For this project I decided that I wanted to change the crossover function in the
@@ -13,7 +13,7 @@ genotype which meant that I had to extend the default genotype and create a new
 class. This is quite easy and only the code for the crossover needed to be
 changed. I will explain a bit more about why I wanted to change the default
 crossover below, but for now in listing \ref{code:neuron-crossover} one can see
-the code.
+the code for the neuron genotype.
 
 \lstinputlisting[language=Python, firstline=179, lastline=208,
 	label=code:neuron-crossover, caption=The default genotype extended to
@@ -28,7 +28,9 @@ different sizes. The genotype then is just a bit array with 5xBITS where 5 repre
 the five variables. Since the genotype is just an array of bits I decided that
 for this project I would try out Gray Code to interpret those bits. This was
 done to ensure that mutation would not have the large impact it would have if
-regular conversion from a bit array to an integer was used. The genotype code
+regular conversion from a bit array to an integer was used. Gray code is another
+way of interpreting a bit array which tries to minimize the difference between
+two sequential numbers, e.g. 4 and 5 differ only by one bit. The genotype code
 does not need to do anything extra in order for this to apply and only in the
 conversion between genotype and phenotype is this extra bit of information used.
 
@@ -47,14 +49,20 @@ better I have tried to create an approximate figure in
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.5]{crossover.pdf}
-	\caption{A representation of crossover in the neuron}
+	\caption{A representation of crossover in the neuron genotype}
 	\label{fig:neuron-crossover}
 \end{figure}
+
+There is however a rather large problem with this. This way of doing crossover
+can lead to quite a bit of stagnation, which is clearly present as will be
+clear in the results. I decided that I wanted to do it this way however because
+it is quite easy coding wise and I wanted to see how the stagnation would affect
+the results and how the, stronger, inheritance would affect the results.
 
 \subsection{Fitness}\label{sec:fitness-description}
 To evaluate the fitness of each spike train I implemented the three different
 distance metrics suggested in the assignment. Since those metrics evaluated
-distance meaning a smaller distance is better and the EA code was set up for
+distance, meaning a smaller distance is better, and the EA code was set up for
 larger is better the natural choice was to just do 1.0/f(x), where f(x) is one of
 the three distance metrics. Since both \textit{Spike Time Distance Metric(STDM)}
 and \textit{Spike Interval Distance Metric(SIDM)} needed the peaks I created one

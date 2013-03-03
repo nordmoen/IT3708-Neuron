@@ -112,7 +112,7 @@ def get_logger(args):
     elif log_type == 'plot':
         return logger.PlotLogger(args.filename)
     elif log_type == 'neuron_plot':
-        return neuron.NeuronLogger(args.filename, args)
+        return neuron.NeuronLogger(args.filename, args, args.filename == None)
 
 def get_fit(args):
     '''Everyone should'''
