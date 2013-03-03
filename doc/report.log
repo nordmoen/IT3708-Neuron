@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.2.9)  3 MAR 2013 15:50
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.2.9)  3 MAR 2013 19:38
 entering extended mode
  %&-line parsing enabled.
 **report.tex
@@ -680,97 +680,143 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./description.tex
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/ppl/b/n' tried instead on input line 1.
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 21.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 21.
-
-(/usr/share/texmf-texlive/tex/latex/psnfss/ot1pcr.fd
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) (../src/neuron.py
-LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 179.
-LaTeX Font Info:    Try loading font information for TS1+pcr on input line 180.
-
-
-(/usr/share/texmf-texlive/tex/latex/psnfss/ts1pcr.fd
-File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
-)pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
- been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.206     def 
-              __repr__(self): [1])
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 23.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 18.
+LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 35.
 
-Overfull \hbox (5.50604pt too wide) in paragraph at lines 37--48
+
+LaTeX Warning: Reference `code:neuron-crossover' on page 1 undefined on input l
+ine 35.
+
+
+Overfull \hbox (5.50604pt too wide) in paragraph at lines 32--43
 \OT1/ppl/m/n/10 vari-ables. This was done to make in-her-i-tance stronger. The 
 change in code(listed
  []
 
-<crossover.pdf, id=206, 725.71124pt x 251.94125pt>
+<crossover.pdf, id=170, 725.71124pt x 251.94125pt>
 File: crossover.pdf Graphic file (type pdf)
  <use crossover.pdf>
-Overfull \hbox (17.85474pt too wide) in paragraph at lines 51--52
+Overfull \hbox (17.85474pt too wide) in paragraph at lines 46--47
  [][] 
  []
 
-[2 <./crossover.pdf>]
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 70.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 70.
- (../src/neuron.py)) (./results.tex
-LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 8.
 
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 65.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 65.
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.67 
+      [1]
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 69.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 69.
+ (/usr/share/texmf-texlive/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+(../src/neuron.py
+LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <9> not available
+(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 162.
+LaTeX Font Info:    Try loading font information for TS1+pcr on input line 163.
+
+ (/usr/share/texmf-texlive/tex/latex/psnfss/ts1pcr.fd
+File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
+)))
+(./results.tex [2 <./crossover.pdf>]
 (/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
 (/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
-) [3]
+)
 
 pdfTeX warning: pdflatex (file ../output/stdm_izzy_1_fitness.pdf): PDF inclusio
 n: found PDF version <1.5>, but at most version <1.4> allowed
-<../output/stdm_izzy_1_fitness.pdf, id=252, 361.35pt x 216.81pt>
+<../output/stdm_izzy_1_fitness.pdf, id=218, 361.35pt x 216.81pt>
 File: ../output/stdm_izzy_1_fitness.pdf Graphic file (type pdf)
 
 <use ../output/stdm_izzy_1_fitness.pdf>
-Overfull \hbox (16.34912pt too wide) in paragraph at lines 48--49
+Overfull \hbox (16.34912pt too wide) in paragraph at lines 62--63
  [][] 
  []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
 pdfTeX warning: pdflatex (file ../output/stdm_izzy_1_spike.pdf): PDF inclusion:
  found PDF version <1.5>, but at most version <1.4> allowed
-<../output/stdm_izzy_1_spike.pdf, id=254, 361.35pt x 216.81pt>
+<../output/stdm_izzy_1_spike.pdf, id=220, 361.35pt x 216.81pt>
 File: ../output/stdm_izzy_1_spike.pdf Graphic file (type pdf)
 
 <use ../output/stdm_izzy_1_spike.pdf>
-Overfull \hbox (16.34912pt too wide) in paragraph at lines 54--55
+Overfull \hbox (16.34912pt too wide) in paragraph at lines 68--69
  [][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[4] [5] [6 <../output/stdm_izzy_1_fitness.pdf>] [7 <../output/stdm_izzy_1_spike
-.pdf>] [8] [9]) [10] [11] (./report.aux) ) 
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3] [4 <../output/stdm_izzy_1_fitness.pdf>]
+
+pdfTeX warning: pdflatex (file ../output/sidm_izzy_1_fitness.pdf): PDF inclusio
+n: found PDF version <1.5>, but at most version <1.4> allowed
+<../output/sidm_izzy_1_fitness.pdf, id=254, 361.35pt x 216.81pt>
+File: ../output/sidm_izzy_1_fitness.pdf Graphic file (type pdf)
+
+<use ../output/sidm_izzy_1_fitness.pdf>
+Overfull \hbox (16.34912pt too wide) in paragraph at lines 127--128
+ [][] 
+ []
+
+
+
+pdfTeX warning: pdflatex (file ../output/sidm_izzy_1_spike.pdf): PDF inclusion:
+ found PDF version <1.5>, but at most version <1.4> allowed
+<../output/sidm_izzy_1_spike.pdf, id=256, 361.35pt x 216.81pt>
+File: ../output/sidm_izzy_1_spike.pdf Graphic file (type pdf)
+
+<use ../output/sidm_izzy_1_spike.pdf>
+Overfull \hbox (16.34912pt too wide) in paragraph at lines 133--134
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[5 <../output/stdm_izzy_1_spike.pdf>] [6 <../output/sidm_izzy_1_fitness.pdf>]
+[7] [8 <../output/sidm_izzy_1_spike.pdf>] [9] [10]) [11] [12] (./report.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 7811 strings out of 494937
- 109514 string characters out of 1180324
- 457134 words of memory out of 3000000
- 10720 multiletter control sequences out of 15000+50000
- 20342 words of font info for 54 fonts, out of 3000000 for 9000
+ 7735 strings out of 494937
+ 108732 string characters out of 1180324
+ 319287 words of memory out of 3000000
+ 10667 multiletter control sequences out of 15000+50000
+ 19622 words of font info for 52 fonts, out of 3000000 for 9000
  118 hyphenation exceptions out of 8191
- 38i,8n,47p,272b,2064s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{Hfootnote
-.1} has been referenced but does not exist, replaced by a fixed one
+ 38i,9n,47p,272b,1615s stack positions out of 5000i,500n,10000p,200000b,50000s
+pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
+, replaced by a fixed one
 
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive
 /fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/c
@@ -778,9 +824,9 @@ ourier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/courier/ucrro8a.pfb
 ></usr/share/texmf-texlive/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texm
 f-texlive/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texmf-texlive/fonts/t
 ype1/urw/palatino/uplri8a.pfb>
-Output written on report.pdf (12 pages, 189171 bytes).
+Output written on report.pdf (13 pages, 216397 bytes).
 PDF statistics:
  373 PDF objects out of 1000 (max. 8388607)
- 121 named destinations out of 1000 (max. 500000)
- 336 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 99 named destinations out of 1000 (max. 500000)
+ 346 words of extra memory for PDF output out of 10000 (max. 10000000)
 

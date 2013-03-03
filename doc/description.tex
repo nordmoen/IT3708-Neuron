@@ -12,13 +12,8 @@ For this project I decided that I wanted to change the crossover function in the
 genotype which meant that I had to extend the default genotype and create a new
 class. This is quite easy and only the code for the crossover needed to be
 changed. I will explain a bit more about why I wanted to change the default
-crossover below, but for now in listing \ref{code:neuron-crossover} one can see
+crossover below, but for now in \textit{neuron.py} line 179 to 208 one can see
 the code for the neuron genotype.
-
-\lstinputlisting[language=Python, firstline=179, lastline=208,
-	label=code:neuron-crossover, caption=The default genotype extended to
-support a different kind of crossover more appropriate for the
-problem.]{../src/neuron.py}
 
 \subsection{Genotype}\label{sec:genotype-description}
 Since the phenotype of the spiking neuron relied on some values being in a

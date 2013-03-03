@@ -35,6 +35,19 @@ data/izzy-train1.dat --bits_per_num=35 --e=0.02
 	\caption{EA parameters for test case 1}
 \end{table}
 \subsubsection{End Results}\label{sec:test-case-1-results}
+As we can see in figure \ref{fig:spike-test-case-1} the end result is quite good
+for the STDM. Although for this test I had to up the bits per number to quite
+high and had to run with a higher population than I had initially
+wanted\footnote{Mostly do to performance concerns}. The end result is good and
+there is nothing really special about this. From the last project I found that
+\textit{Tournament selection} was the better of the four mechanisms and that is
+reflected here, all the other did worse under the same conditions.
+
+Looking at figure \ref{fig:fitness-test-case-1} we can see that the analysis
+about the new crossover was quite right. If we look at the standard deviation we
+can see that it is very low to begin with and then after some time, goes up. This
+is signs of stagnation, but because of the high mutation rate we get a good end
+result.
 \begin{table}[h]
 	\begin{tabular}{c c c c c}
 		a & b & c & d & k \\
@@ -61,34 +74,66 @@ data/izzy-train1.dat --bits_per_num=35 --e=0.02
 In this test we are testing SIDM with the test case
 \textit{izzy-train1.dat}.
 \subsubsection{EA Parameters}\label{sec:test-case-2-parameters}
+\begin{lstlisting}[frame=single, language=bash, caption=Command-line to
+replicate the results]
+python src/main.py 350 5 50 --mutation=0.05 --cross_rate=0.8 full_generational
+tournament --k=5 --elite=3 sidm convert_neuron neuron_plot training\
+data/izzy-train1.dat --bits_per_num=30 --e=0.02
+\end{lstlisting}
 \begin{table}
 	\begin{tabular}{c c}
 		Variable & Value \\
 		\hline
-		Generations & X \\
+		Generations & 350 \\
 		\hline
-		Population size & X \\
+		Population size & 50 \\
 		\hline
-		Mutation rate & X \\
+		Mutation rate & 0.05 \\
 		\hline
-		Crossover rate & X \\
+		Crossover rate & 0.8 \\
 		\hline
-		Protocol & X \\
+		Protocol & Full generational replacement \\
 		\hline
-		Mechanism & X \\
+		Mechanism & Tournament selection, k=5, e=0.02 \\
 		\hline
-		Elitism & X \\
+		Elitism & 3 \\
 		\hline
-		Bits per number & \\
+		Bits per number & 30 \\
 	\end{tabular}
 	\caption{EA parameters for test case 2}
 \end{table}
 \subsubsection{End Results}\label{sec:test-case-2-results}
+In figure \ref{fig:spike-test-case-2} we can see the spike train for this test
+case, and the story is quite different from the last case, but it is quite
+expected considering what SIDM actually does. Since it is mostly conserned with
+the distance between spikes this technique is very good at getting the distance
+right, but the placement in the spike train is often wrong.
+
+The fitness(see figure \ref{fig:fitness-test-case-2}) for this case is much 
+closer to the previous case than the spike
+train. We can see that in the start the standard deviation is low, but then
+after some, lucky, mutations it grows and we get a more diverse population.
 \begin{table}
 	\begin{tabular}{c c c c c}
 		a & b & c & d & k \\
+		\hline
+		0.0010 & 0.0207 & -55.985 & 5.2820 & 0.0497
 	\end{tabular}
+	\caption{The neuron variables which gave the best solution for test case
+	2}
 \end{table}
+\begin{figure}[h]
+	\centering
+	\includegraphics{../output/sidm_izzy_1_fitness.pdf}
+	\caption{Fitness progression for test case 2}
+	\label{fig:fitness-test-case-2}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics{../output/sidm_izzy_1_spike.pdf}
+	\caption{Spike train comparison for test case 2}
+	\label{fig:spike-test-case-2}
+\end{figure}
 
 \subsection{Test Case 3}\label{sec:test-case-3}
 In this test we are testing WDM with the test case
