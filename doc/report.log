@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.2.9)  3 MAR 2013 19:38
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.2.9)  3 MAR 2013 21:04
 entering extended mode
  %&-line parsing enabled.
 **report.tex
@@ -743,7 +743,7 @@ n: found PDF version <1.5>, but at most version <1.4> allowed
 File: ../output/stdm_izzy_1_fitness.pdf Graphic file (type pdf)
 
 <use ../output/stdm_izzy_1_fitness.pdf>
-Overfull \hbox (16.34912pt too wide) in paragraph at lines 62--63
+Overfull \hbox (16.34912pt too wide) in paragraph at lines 68--69
  [][] 
  []
 
@@ -755,7 +755,7 @@ pdfTeX warning: pdflatex (file ../output/stdm_izzy_1_spike.pdf): PDF inclusion:
 File: ../output/stdm_izzy_1_spike.pdf Graphic file (type pdf)
 
 <use ../output/stdm_izzy_1_spike.pdf>
-Overfull \hbox (16.34912pt too wide) in paragraph at lines 68--69
+Overfull \hbox (16.34912pt too wide) in paragraph at lines 74--75
  [][] 
  []
 
@@ -768,15 +768,15 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[3] [4 <../output/stdm_izzy_1_fitness.pdf>]
+[3]
 
 pdfTeX warning: pdflatex (file ../output/sidm_izzy_1_fitness.pdf): PDF inclusio
 n: found PDF version <1.5>, but at most version <1.4> allowed
-<../output/sidm_izzy_1_fitness.pdf, id=254, 361.35pt x 216.81pt>
+<../output/sidm_izzy_1_fitness.pdf, id=236, 361.35pt x 216.81pt>
 File: ../output/sidm_izzy_1_fitness.pdf Graphic file (type pdf)
 
 <use ../output/sidm_izzy_1_fitness.pdf>
-Overfull \hbox (16.34912pt too wide) in paragraph at lines 127--128
+Overfull \hbox (16.34912pt too wide) in paragraph at lines 133--134
  [][] 
  []
 
@@ -784,11 +784,42 @@ Overfull \hbox (16.34912pt too wide) in paragraph at lines 127--128
 
 pdfTeX warning: pdflatex (file ../output/sidm_izzy_1_spike.pdf): PDF inclusion:
  found PDF version <1.5>, but at most version <1.4> allowed
-<../output/sidm_izzy_1_spike.pdf, id=256, 361.35pt x 216.81pt>
+<../output/sidm_izzy_1_spike.pdf, id=238, 361.35pt x 216.81pt>
 File: ../output/sidm_izzy_1_spike.pdf Graphic file (type pdf)
 
 <use ../output/sidm_izzy_1_spike.pdf>
-Overfull \hbox (16.34912pt too wide) in paragraph at lines 133--134
+Overfull \hbox (16.34912pt too wide) in paragraph at lines 139--140
+ [][] 
+ []
+
+[4 <../output/stdm_izzy_1_fitness.pdf>]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[5 <../output/stdm_izzy_1_spike.pdf>] [6 <../output/sidm_izzy_1_fitness.pdf>]
+
+pdfTeX warning: pdflatex (file ../output/wdm_izzy_1_fitness.pdf): PDF inclusion
+: found PDF version <1.5>, but at most version <1.4> allowed
+<../output/wdm_izzy_1_fitness.pdf, id=292, 361.35pt x 216.81pt>
+File: ../output/wdm_izzy_1_fitness.pdf Graphic file (type pdf)
+
+<use ../output/wdm_izzy_1_fitness.pdf>
+Overfull \hbox (16.34912pt too wide) in paragraph at lines 202--203
+ [][] 
+ []
+
+
+
+pdfTeX warning: pdflatex (file ../output/wdm_izzy_1_spike.pdf): PDF inclusion: 
+found PDF version <1.5>, but at most version <1.4> allowed
+<../output/wdm_izzy_1_spike.pdf, id=294, 361.35pt x 216.81pt>
+File: ../output/wdm_izzy_1_spike.pdf Graphic file (type pdf)
+
+<use ../output/wdm_izzy_1_spike.pdf>
+Overfull \hbox (16.34912pt too wide) in paragraph at lines 208--209
  [][] 
  []
 
@@ -798,18 +829,109 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[5 <../output/stdm_izzy_1_spike.pdf>] [6 <../output/sidm_izzy_1_fitness.pdf>]
-[7] [8 <../output/sidm_izzy_1_spike.pdf>] [9] [10]) [11] [12] (./report.aux)
+[7 <../output/sidm_izzy_1_spike.pdf>]
+
+pdfTeX warning: pdflatex (file ../output/stdm_izzy_2_fitness.pdf): PDF inclusio
+n: found PDF version <1.5>, but at most version <1.4> allowed
+<../output/stdm_izzy_2_fitness.pdf, id=314, 361.35pt x 216.81pt>
+File: ../output/stdm_izzy_2_fitness.pdf Graphic file (type pdf)
+
+<use ../output/stdm_izzy_2_fitness.pdf>
+Overfull \hbox (16.34912pt too wide) in paragraph at lines 266--267
+ [][] 
+ []
+
+
+
+pdfTeX warning: pdflatex (file ../output/stdm_izzy_2_spike.pdf): PDF inclusion:
+ found PDF version <1.5>, but at most version <1.4> allowed
+<../output/stdm_izzy_2_spike.pdf, id=316, 361.35pt x 216.81pt>
+File: ../output/stdm_izzy_2_spike.pdf Graphic file (type pdf)
+
+<use ../output/stdm_izzy_2_spike.pdf>
+Overfull \hbox (16.34912pt too wide) in paragraph at lines 272--273
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[8 <../output/wdm_izzy_1_fitness.pdf>] [9 <../output/wdm_izzy_1_spike.pdf>]
+
+pdfTeX warning: pdflatex (file ../output/sidm_izzy_2_fitness.pdf): PDF inclusio
+n: found PDF version <1.5>, but at most version <1.4> allowed
+<../output/sidm_izzy_2_fitness.pdf, id=350, 361.35pt x 216.81pt>
+File: ../output/sidm_izzy_2_fitness.pdf Graphic file (type pdf)
+
+<use ../output/sidm_izzy_2_fitness.pdf>
+Overfull \hbox (16.34912pt too wide) in paragraph at lines 330--331
+ [][] 
+ []
+
+
+
+pdfTeX warning: pdflatex (file ../output/sidm_izzy_2_spike.pdf): PDF inclusion:
+ found PDF version <1.5>, but at most version <1.4> allowed
+<../output/sidm_izzy_2_spike.pdf, id=352, 361.35pt x 216.81pt>
+File: ../output/sidm_izzy_2_spike.pdf Graphic file (type pdf)
+
+<use ../output/sidm_izzy_2_spike.pdf>
+Overfull \hbox (16.34912pt too wide) in paragraph at lines 336--337
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[10 <../output/stdm_izzy_2_fitness.pdf>]
+
+pdfTeX warning: pdflatex (file ../output/wdm_izzy_2_fitness.pdf): PDF inclusion
+: found PDF version <1.5>, but at most version <1.4> allowed
+<../output/wdm_izzy_2_fitness.pdf, id=372, 361.35pt x 216.81pt>
+File: ../output/wdm_izzy_2_fitness.pdf Graphic file (type pdf)
+
+<use ../output/wdm_izzy_2_fitness.pdf>
+Overfull \hbox (16.34912pt too wide) in paragraph at lines 392--393
+ [][] 
+ []
+
+
+
+pdfTeX warning: pdflatex (file ../output/wdm_izzy_2_spike.pdf): PDF inclusion: 
+found PDF version <1.5>, but at most version <1.4> allowed
+<../output/wdm_izzy_2_spike.pdf, id=374, 361.35pt x 216.81pt>
+File: ../output/wdm_izzy_2_spike.pdf Graphic file (type pdf)
+
+<use ../output/wdm_izzy_2_spike.pdf>
+Overfull \hbox (16.34912pt too wide) in paragraph at lines 398--399
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[11 <../output/stdm_izzy_2_spike.pdf>] [12 <../output/sidm_izzy_2_fitness.pdf>]
+[13 <../output/sidm_izzy_2_spike.pdf>] [14 <../output/wdm_izzy_2_fitness.pdf>]
+[15]) [16 <../output/wdm_izzy_2_spike.pdf>] (./report.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 7735 strings out of 494937
- 108732 string characters out of 1180324
- 319287 words of memory out of 3000000
- 10667 multiletter control sequences out of 15000+50000
- 19622 words of font info for 52 fonts, out of 3000000 for 9000
+ 7825 strings out of 494937
+ 110688 string characters out of 1180324
+ 320119 words of memory out of 3000000
+ 10717 multiletter control sequences out of 15000+50000
+ 20049 words of font info for 53 fonts, out of 3000000 for 9000
  118 hyphenation exceptions out of 8191
  38i,9n,47p,272b,1615s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exi
@@ -824,9 +946,9 @@ ourier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/courier/ucrro8a.pfb
 ></usr/share/texmf-texlive/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texm
 f-texlive/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texmf-texlive/fonts/t
 ype1/urw/palatino/uplri8a.pfb>
-Output written on report.pdf (13 pages, 216397 bytes).
+Output written on report.pdf (17 pages, 377372 bytes).
 PDF statistics:
- 373 PDF objects out of 1000 (max. 8388607)
- 99 named destinations out of 1000 (max. 500000)
- 346 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 504 PDF objects out of 1000 (max. 8388607)
+ 131 named destinations out of 1000 (max. 500000)
+ 386 words of extra memory for PDF output out of 10000 (max. 10000000)
 
