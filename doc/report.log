@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.2.9)  4 MAR 2013 10:47
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.2.9)  4 MAR 2013 14:58
 entering extended mode
  %&-line parsing enabled.
 **report.tex
@@ -624,7 +624,14 @@ Package: pdflscape 2008/08/11 v0.10 Landscape pages in PDF (HO)
 Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 75.
-) (./report.aux)
+) (./report.aux
+
+LaTeX Warning: Label `sec:test-case-11' multiply defined.
+
+
+LaTeX Warning: Label `sec:test-case-11-parameters' multiply defined.
+
+)
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
@@ -643,8 +650,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 23.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 23.
-
-(/usr/share/texmf-texlive/tex/latex/base/ts1cmr.fd
+ (/usr/share/texmf-texlive/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 23.
@@ -718,7 +724,7 @@ Overfull \hbox (5.50604pt too wide) in paragraph at lines 32--43
 change in code(listed
  []
 
-<crossover.pdf, id=170, 725.71124pt x 251.94125pt>
+<crossover.pdf, id=182, 725.71124pt x 251.94125pt>
 File: crossover.pdf Graphic file (type pdf)
  <use crossover.pdf>
 Overfull \hbox (17.85474pt too wide) in paragraph at lines 46--47
@@ -762,119 +768,221 @@ File: lstlang1.sty 2004/09/05 1.3 listings language file
 
 pdfTeX warning: pdflatex (file ../output/stdm_izzy_1_fitness.pdf): PDF inclusio
 n: found PDF version <1.5>, but at most version <1.4> allowed
-<../output/stdm_izzy_1_fitness.pdf, id=218, 361.35pt x 216.81pt>
+<../output/stdm_izzy_1_fitness.pdf, id=230, 361.35pt x 216.81pt>
 File: ../output/stdm_izzy_1_fitness.pdf Graphic file (type pdf)
 
 <use ../output/stdm_izzy_1_fitness.pdf>
 
 pdfTeX warning: pdflatex (file ../output/stdm_izzy_1_spike.pdf): PDF inclusion:
  found PDF version <1.5>, but at most version <1.4> allowed
-<../output/stdm_izzy_1_spike.pdf, id=220, 361.35pt x 216.81pt>
+<../output/stdm_izzy_1_spike.pdf, id=232, 361.35pt x 216.81pt>
 File: ../output/stdm_izzy_1_spike.pdf Graphic file (type pdf)
 
 <use ../output/stdm_izzy_1_spike.pdf>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[3] [4 <../output/stdm_izzy_1_fitness.pdf> <../output/stdm_izzy_1_spike.pdf>]
+[3]
 
 pdfTeX warning: pdflatex (file ../output/sidm_izzy_1_fitness.pdf): PDF inclusio
 n: found PDF version <1.5>, but at most version <1.4> allowed
-<../output/sidm_izzy_1_fitness.pdf, id=262, 361.35pt x 216.81pt>
+<../output/sidm_izzy_1_fitness.pdf, id=247, 361.35pt x 216.81pt>
 File: ../output/sidm_izzy_1_fitness.pdf Graphic file (type pdf)
 
 <use ../output/sidm_izzy_1_fitness.pdf>
 
 pdfTeX warning: pdflatex (file ../output/sidm_izzy_1_spike.pdf): PDF inclusion:
  found PDF version <1.5>, but at most version <1.4> allowed
-<../output/sidm_izzy_1_spike.pdf, id=264, 361.35pt x 216.81pt>
+<../output/sidm_izzy_1_spike.pdf, id=249, 361.35pt x 216.81pt>
 File: ../output/sidm_izzy_1_spike.pdf Graphic file (type pdf)
 
-<use ../output/sidm_izzy_1_spike.pdf> [5 <../output/sidm_izzy_1_fitness.pdf> <.
-./output/sidm_izzy_1_spike.pdf>]
+<use ../output/sidm_izzy_1_spike.pdf>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[4 <../output/stdm_izzy_1_fitness.pdf> <../output/stdm_izzy_1_spike.pdf>]
 
 pdfTeX warning: pdflatex (file ../output/wdm_izzy_1_fitness.pdf): PDF inclusion
 : found PDF version <1.5>, but at most version <1.4> allowed
-<../output/wdm_izzy_1_fitness.pdf, id=292, 361.35pt x 216.81pt>
+<../output/wdm_izzy_1_fitness.pdf, id=278, 361.35pt x 216.81pt>
 File: ../output/wdm_izzy_1_fitness.pdf Graphic file (type pdf)
 
 <use ../output/wdm_izzy_1_fitness.pdf>
 
 pdfTeX warning: pdflatex (file ../output/wdm_izzy_1_spike.pdf): PDF inclusion: 
 found PDF version <1.5>, but at most version <1.4> allowed
-<../output/wdm_izzy_1_spike.pdf, id=294, 361.35pt x 216.81pt>
+<../output/wdm_izzy_1_spike.pdf, id=280, 361.35pt x 216.81pt>
 File: ../output/wdm_izzy_1_spike.pdf Graphic file (type pdf)
 
-<use ../output/wdm_izzy_1_spike.pdf> [6 <../output/wdm_izzy_1_fitness.pdf> <../
-output/wdm_izzy_1_spike.pdf>]
+<use ../output/wdm_izzy_1_spike.pdf>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[5 <../output/sidm_izzy_1_fitness.pdf> <../output/sidm_izzy_1_spike.pdf>]
 
 pdfTeX warning: pdflatex (file ../output/stdm_izzy_2_fitness.pdf): PDF inclusio
 n: found PDF version <1.5>, but at most version <1.4> allowed
-<../output/stdm_izzy_2_fitness.pdf, id=323, 361.35pt x 216.81pt>
+<../output/stdm_izzy_2_fitness.pdf, id=308, 361.35pt x 216.81pt>
 File: ../output/stdm_izzy_2_fitness.pdf Graphic file (type pdf)
 
 <use ../output/stdm_izzy_2_fitness.pdf>
 
 pdfTeX warning: pdflatex (file ../output/stdm_izzy_2_spike.pdf): PDF inclusion:
  found PDF version <1.5>, but at most version <1.4> allowed
-<../output/stdm_izzy_2_spike.pdf, id=325, 361.35pt x 216.81pt>
+<../output/stdm_izzy_2_spike.pdf, id=310, 361.35pt x 216.81pt>
 File: ../output/stdm_izzy_2_spike.pdf Graphic file (type pdf)
 
-<use ../output/stdm_izzy_2_spike.pdf> [7 <../output/stdm_izzy_2_fitness.pdf> <.
-./output/stdm_izzy_2_spike.pdf>]
+<use ../output/stdm_izzy_2_spike.pdf>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[6 <../output/wdm_izzy_1_fitness.pdf> <../output/wdm_izzy_1_spike.pdf>]
 
 pdfTeX warning: pdflatex (file ../output/sidm_izzy_2_fitness.pdf): PDF inclusio
 n: found PDF version <1.5>, but at most version <1.4> allowed
-<../output/sidm_izzy_2_fitness.pdf, id=351, 361.35pt x 216.81pt>
+<../output/sidm_izzy_2_fitness.pdf, id=340, 361.35pt x 216.81pt>
 File: ../output/sidm_izzy_2_fitness.pdf Graphic file (type pdf)
 
 <use ../output/sidm_izzy_2_fitness.pdf>
 
 pdfTeX warning: pdflatex (file ../output/sidm_izzy_2_spike.pdf): PDF inclusion:
  found PDF version <1.5>, but at most version <1.4> allowed
-<../output/sidm_izzy_2_spike.pdf, id=353, 361.35pt x 216.81pt>
+<../output/sidm_izzy_2_spike.pdf, id=342, 361.35pt x 216.81pt>
 File: ../output/sidm_izzy_2_spike.pdf Graphic file (type pdf)
 
-<use ../output/sidm_izzy_2_spike.pdf>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[8]
+<use ../output/sidm_izzy_2_spike.pdf> [7 <../output/stdm_izzy_2_fitness.pdf> <.
+./output/stdm_izzy_2_spike.pdf> <../output/sidm_izzy_2_fitness.pdf> <../output/
+sidm_izzy_2_spike.pdf>]
 
 pdfTeX warning: pdflatex (file ../output/wdm_izzy_2_fitness.pdf): PDF inclusion
 : found PDF version <1.5>, but at most version <1.4> allowed
-<../output/wdm_izzy_2_fitness.pdf, id=368, 361.35pt x 216.81pt>
+<../output/wdm_izzy_2_fitness.pdf, id=385, 361.35pt x 216.81pt>
 File: ../output/wdm_izzy_2_fitness.pdf Graphic file (type pdf)
 
 <use ../output/wdm_izzy_2_fitness.pdf>
 
 pdfTeX warning: pdflatex (file ../output/wdm_izzy_2_spike.pdf): PDF inclusion: 
 found PDF version <1.5>, but at most version <1.4> allowed
-<../output/wdm_izzy_2_spike.pdf, id=370, 361.35pt x 216.81pt>
+<../output/wdm_izzy_2_spike.pdf, id=387, 361.35pt x 216.81pt>
 File: ../output/wdm_izzy_2_spike.pdf Graphic file (type pdf)
 
-<use ../output/wdm_izzy_2_spike.pdf>
+<use ../output/wdm_izzy_2_spike.pdf> [8 <../output/wdm_izzy_2_fitness.pdf> <../
+output/wdm_izzy_2_spike.pdf>]
+
+pdfTeX warning: pdflatex (file ../output/stdm_izzy_3_fitness.pdf): PDF inclusio
+n: found PDF version <1.5>, but at most version <1.4> allowed
+<../output/stdm_izzy_3_fitness.pdf, id=415, 361.35pt x 216.81pt>
+File: ../output/stdm_izzy_3_fitness.pdf Graphic file (type pdf)
+
+<use ../output/stdm_izzy_3_fitness.pdf>
+
+pdfTeX warning: pdflatex (file ../output/stdm_izzy_3_spike.pdf): PDF inclusion:
+ found PDF version <1.5>, but at most version <1.4> allowed
+<../output/stdm_izzy_3_spike.pdf, id=417, 361.35pt x 216.81pt>
+File: ../output/stdm_izzy_3_spike.pdf Graphic file (type pdf)
+
+<use ../output/stdm_izzy_3_spike.pdf> [9 <../output/stdm_izzy_3_fitness.pdf> <.
+./output/stdm_izzy_3_spike.pdf>]
+
+pdfTeX warning: pdflatex (file ../output/sidm_izzy_3_fitness.pdf): PDF inclusio
+n: found PDF version <1.5>, but at most version <1.4> allowed
+<../output/sidm_izzy_3_fitness.pdf, id=449, 361.35pt x 216.81pt>
+File: ../output/sidm_izzy_3_fitness.pdf Graphic file (type pdf)
+
+<use ../output/sidm_izzy_3_fitness.pdf>
+
+pdfTeX warning: pdflatex (file ../output/sidm_izzy_3_spike.pdf): PDF inclusion:
+ found PDF version <1.5>, but at most version <1.4> allowed
+<../output/sidm_izzy_3_spike.pdf, id=451, 361.35pt x 216.81pt>
+File: ../output/sidm_izzy_3_spike.pdf Graphic file (type pdf)
+
+<use ../output/sidm_izzy_3_spike.pdf>
+
+pdfTeX warning: pdflatex (file ../output/wdm_izzy_3_fitness.pdf): PDF inclusion
+: found PDF version <1.5>, but at most version <1.4> allowed
+<../output/wdm_izzy_3_fitness.pdf, id=453, 361.35pt x 216.81pt>
+File: ../output/wdm_izzy_3_fitness.pdf Graphic file (type pdf)
+
+<use ../output/wdm_izzy_3_fitness.pdf>
+
+pdfTeX warning: pdflatex (file ../output/wdm_izzy_3_spike.pdf): PDF inclusion: 
+found PDF version <1.5>, but at most version <1.4> allowed
+<../output/wdm_izzy_3_spike.pdf, id=455, 361.35pt x 216.81pt>
+File: ../output/wdm_izzy_3_spike.pdf Graphic file (type pdf)
+
+<use ../output/wdm_izzy_3_spike.pdf> [10 <../output/sidm_izzy_3_fitness.pdf> <.
+./output/sidm_izzy_3_spike.pdf>]
+
+pdfTeX warning: pdflatex (file ../output/stdm_izzy_4_fitness.pdf): PDF inclusio
+n: found PDF version <1.5>, but at most version <1.4> allowed
+<../output/stdm_izzy_4_fitness.pdf, id=483, 361.35pt x 216.81pt>
+File: ../output/stdm_izzy_4_fitness.pdf Graphic file (type pdf)
+
+<use ../output/stdm_izzy_4_fitness.pdf>
+
+pdfTeX warning: pdflatex (file ../output/stdm_izzy_4_spike.pdf): PDF inclusion:
+ found PDF version <1.5>, but at most version <1.4> allowed
+<../output/stdm_izzy_4_spike.pdf, id=485, 361.35pt x 216.81pt>
+File: ../output/stdm_izzy_4_spike.pdf Graphic file (type pdf)
+
+<use ../output/stdm_izzy_4_spike.pdf>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[9 <../output/sidm_izzy_2_fitness.pdf> <../output/sidm_izzy_2_spike.pdf>]
-[10 <../output/wdm_izzy_2_fitness.pdf> <../output/wdm_izzy_2_spike.pdf>]
-[11]) [12] [13] (./report.aux)
+[11 <../output/wdm_izzy_3_fitness.pdf> <../output/wdm_izzy_3_spike.pdf>]
+
+pdfTeX warning: pdflatex (file ../output/sidm_izzy_4_fitness.pdf): PDF inclusio
+n: found PDF version <1.5>, but at most version <1.4> allowed
+<../output/sidm_izzy_4_fitness.pdf, id=513, 361.35pt x 216.81pt>
+File: ../output/sidm_izzy_4_fitness.pdf Graphic file (type pdf)
+
+<use ../output/sidm_izzy_4_fitness.pdf>
+
+pdfTeX warning: pdflatex (file ../output/sidm_izzy_4_spike.pdf): PDF inclusion:
+ found PDF version <1.5>, but at most version <1.4> allowed
+<../output/sidm_izzy_4_spike.pdf, id=515, 361.35pt x 216.81pt>
+File: ../output/sidm_izzy_4_spike.pdf Graphic file (type pdf)
+
+<use ../output/sidm_izzy_4_spike.pdf>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[12 <../output/stdm_izzy_4_fitness.pdf> <../output/stdm_izzy_4_spike.pdf>]
+
+pdfTeX warning: pdflatex (file ../output/wdm_izzy_4_fitness.pdf): PDF inclusion
+: found PDF version <1.5>, but at most version <1.4> allowed
+<../output/wdm_izzy_4_fitness.pdf, id=545, 361.35pt x 216.81pt>
+File: ../output/wdm_izzy_4_fitness.pdf Graphic file (type pdf)
+
+<use ../output/wdm_izzy_4_fitness.pdf>
+
+pdfTeX warning: pdflatex (file ../output/wdm_izzy_4_spike.pdf): PDF inclusion: 
+found PDF version <1.5>, but at most version <1.4> allowed
+<../output/wdm_izzy_4_spike.pdf, id=547, 361.35pt x 216.81pt>
+File: ../output/wdm_izzy_4_spike.pdf Graphic file (type pdf)
+
+<use ../output/wdm_izzy_4_spike.pdf>)
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+(./discussion.tex [13 <../output/sidm_izzy_4_fitness.pdf> <../output/sidm_izzy_
+4_spike.pdf>]) [14 <../output/wdm_izzy_4_fitness.pdf> <../output/wdm_izzy_4_spi
+ke.pdf>] (./report.aux)
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 8793 strings out of 494937
- 128451 string characters out of 1180324
- 331402 words of memory out of 3000000
- 11679 multiletter control sequences out of 15000+50000
+ 8912 strings out of 494937
+ 131533 string characters out of 1180324
+ 333179 words of memory out of 3000000
+ 11761 multiletter control sequences out of 15000+50000
  20724 words of font info for 54 fonts, out of 3000000 for 9000
  118 hyphenation exceptions out of 8191
- 38i,9n,47p,272b,1603s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,9n,47p,272b,1871s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -887,9 +995,9 @@ ourier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/courier/ucrro8a.pfb
 ></usr/share/texmf-texlive/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texm
 f-texlive/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texmf-texlive/fonts/t
 ype1/urw/palatino/uplri8a.pfb>
-Output written on report.pdf (14 pages, 375411 bytes).
+Output written on report.pdf (15 pages, 599229 bytes).
 PDF statistics:
- 492 PDF objects out of 1000 (max. 8388607)
- 128 named destinations out of 1000 (max. 500000)
- 386 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 650 PDF objects out of 1000 (max. 8388607)
+ 150 named destinations out of 1000 (max. 500000)
+ 470 words of extra memory for PDF output out of 10000 (max. 10000000)
 

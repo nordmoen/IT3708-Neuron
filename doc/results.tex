@@ -18,28 +18,7 @@ python src/main.py 350 5 50 --mutation=0.1 --cross_rate=0.8 full_generational
 tournament --k=5 --elite=3 stdm convert_neuron neuron_plot training\
 data/izzy-train1.dat --bits_per_num=35 --e=0.02
 \end{lstlisting}
-\begin{table}[h]
-	\begin{tabular}{c c}
-		Variable & Value \\
-		\hline
-		Generations & 350 \\
-		\hline
-		Population size & 50 \\
-		\hline
-		Mutation rate & 0.1 \\
-		\hline
-		Crossover rate & 0.8 \\
-		\hline
-		Protocol & Full generational replacement \\
-		\hline
-		Mechanism & Tournament selection, k=5 and e=0.02 \\
-		\hline
-		Elitism & 3 \\
-		\hline
-		Bits per number & 35 \\
-	\end{tabular}
-	\caption{EA parameters for test case 1}
-\end{table}
+Generations: 350, Population size: 50, Mutation rate: 0.1, Crossover rate: 0.8, Protocol: Full generational replacement, Mechanism: Tournament selection, k=5 and e=0.02, Elitism: 3, Bits per number: 35
 \subsubsection{End Results}\label{sec:test-case-1-results}
 As we can see in figure \ref{fig:spike-test-case-1} the end result is quite good
 for the STDM. Although for this test I had to up the bits per number to quite
@@ -55,10 +34,10 @@ can see that it is very low to begin with and then after some time, goes up. Thi
 is signs of stagnation, but because of the high mutation rate we get a good end
 result.
 \begin{table}[h]
-	\begin{tabular}{c c c c c}
-		a & b & c & d & k \\
+	\begin{tabular}{c c c c c c}
+		a & b & c & d & k & Fitness\\
 		\hline
-		0.0323 & 0.0441 & -50.924 & 1.1294 & 0.0412
+		0.0323 & 0.0441 & -50.924 & 1.1294 & 0.0412 & 0.34
 	\end{tabular}
 	\caption{The neuron variables which gave the best solution for test case
 	1}
@@ -88,28 +67,7 @@ python src/main.py 350 5 50 --mutation=0.05 --cross_rate=0.8 full_generational
 tournament --k=5 --elite=3 sidm convert_neuron neuron_plot training\
 data/izzy-train1.dat --bits_per_num=30 --e=0.02
 \end{lstlisting}
-\begin{table}
-	\begin{tabular}{c c}
-		Variable & Value \\
-		\hline
-		Generations & 350 \\
-		\hline
-		Population size & 50 \\
-		\hline
-		Mutation rate & 0.05 \\
-		\hline
-		Crossover rate & 0.8 \\
-		\hline
-		Protocol & Full generational replacement \\
-		\hline
-		Mechanism & Tournament selection, k=5, e=0.02 \\
-		\hline
-		Elitism & 3 \\
-		\hline
-		Bits per number & 30 \\
-	\end{tabular}
-	\caption{EA parameters for test case 2}
-\end{table}
+Generations: 350, Population size: 50, Mutation rate: 0.05, Crossover rate: 0.8, Protocol: Full generational replacement, Mechanism: Tournament selection, k=5, e=0.02, Elitism: 3, Bits per number: 30
 \subsubsection{End Results}\label{sec:test-case-2-results}
 In figure \ref{fig:spike-test-case-2} we can see the spike train for this test
 case, and the story is quite different from the last case, but it is quite
@@ -122,10 +80,10 @@ closer to the previous case than the spike
 train. We can see that in the start the standard deviation is low, but then
 after some, lucky, mutations it grows and we get a more diverse population.
 \begin{table}
-	\begin{tabular}{c c c c c}
-		a & b & c & d & k \\
+	\begin{tabular}{c c c c c c}
+		a & b & c & d & k & Fitness\\
 		\hline
-		0.0010 & 0.0207 & -55.985 & 5.2820 & 0.0497
+		0.0010 & 0.0207 & -55.985 & 5.2820 & 0.0497 & 1.33
 	\end{tabular}
 	\caption{The neuron variables which gave the best solution for test case
 	2}
@@ -155,28 +113,7 @@ python src/main.py 500 5 50 --mutation=0.05 --cross_rate=0.7 full_generational
 sigma --elite=3 wdm convert_neuron neuron_plot training\ data/izzy-train1.dat
 --bits_per_num=20
 \end{lstlisting}
-\begin{table}
-	\begin{tabular}{c c}
-		Variable & Value \\
-		\hline
-		Generations & 500 \\
-		\hline
-		Population size & 50 \\
-		\hline
-		Mutation rate & 0.05 \\
-		\hline
-		Crossover rate & 0.7 \\
-		\hline
-		Protocol & Full generational replacement \\
-		\hline
-		Mechanism & Sigma \\
-		\hline
-		Elitism & 3 \\
-		\hline
-		Bits per number & 20 \\
-	\end{tabular}
-	\caption{EA parameters for test case 3}
-\end{table}
+Generations: 500, Population size: 50, Mutation rate: 0.05, Crossover rate: 0.7, Protocol: Full generational replacement, Mechanism: Sigma, Elitism: 3, Bits per number: 20
 \subsubsection{End Results}\label{sec:test-case-3-results}
 The result for this one is very good, actually a lot better than I had initially
 though, but the result is very much a result of tweaking to get every thing to
@@ -193,10 +130,10 @@ Since this was run for a longer time than the two previous tests the standard
 deviation is a bit "flatter", but we can still see traces of early stagnation
 before some mutations kick in.
 \begin{table}
-	\begin{tabular}{c c c c c}
-		a & b & c & d & k \\
+	\begin{tabular}{c c c c c c}
+		a & b & c & d & k & Fitness\\
 		\hline
-		0.0246 & 0.1645 & -49.704 & 1.9947 & 0.0401
+		0.0246 & 0.1645 & -49.704 & 1.9947 & 0.0401 & 13.5
 	\end{tabular}
 	\caption{The neuron variables which gave the best solution for test case
 	3}
@@ -226,28 +163,7 @@ python src/main.py 500 5 50 --mutation=0.1 --cross_rate=0.9 full_generational
 sigma --elite=3 stdm convert_neuron neuron_plot training\
 data/izzy-train2.dat --bits_per_num=40
 \end{lstlisting}
-\begin{table}
-	\begin{tabular}{c c}
-		Variable & Value \\
-		\hline
-		Generations & 500 \\
-		\hline
-		Population size & 50 \\
-		\hline
-		Mutation rate & 0.1 \\
-		\hline
-		Crossover rate & 0.9 \\
-		\hline
-		Protocol & Full generational replacement \\
-		\hline
-		Mechanism & Sigma scaling \\
-		\hline
-		Elitism & 3 \\
-		\hline
-		Bits per number & 3 \\
-	\end{tabular}
-	\caption{EA parameters for test case 4}
-\end{table}
+Generations: 500, Population size: 50, Mutation rate: 0.1, Crossover rate: 0.9, Protocol: Full generational replacement, Mechanism: Sigma scaling, Elitism: 3, Bits per number: 3
 \subsubsection{End Results}\label{sec:test-case-4-results}
 In this we can again see that STDM is quite good a placing the spike about where
 they should be, but it can't seem to place them perfect nor get the spacing
@@ -259,10 +175,10 @@ results. We can see that the standard deviation increases along with the best
 becoming better. This is again one which could probably run forever, but the
 later increases was not large enough for me to warrant the longer run times.
 \begin{table}
-	\begin{tabular}{c c c c c}
-		a & b & c & d & k \\
+	\begin{tabular}{c c c c c c}
+		a & b & c & d & k & Fitness\\
 		\hline
-		0.0229 & 0.2902 & -47.672 & 5.7082 & 0.0470
+		0.0229 & 0.2902 & -47.672 & 5.7082 & 0.0470 & 0.537
 	\end{tabular}
 	\caption{The neuron variables which gave the best solution for test case
 	4}
@@ -292,28 +208,7 @@ python src/main.py 250 5 20 --mutation=0.1 --cross_rate=0.8 full_generational
 tournament --k=5 --e=0.02 --elite=3 sidm convert_neuron neuron_plot training\
 data/izzy-train2.dat --bits_per_num=40
 \end{lstlisting}
-\begin{table}
-	\begin{tabular}{c c}
-		Variable & Value \\
-		\hline
-		Generations & 250 \\
-		\hline
-		Population size & 20 \\
-		\hline
-		Mutation rate & 0.1 \\
-		\hline
-		Crossover rate & 0.8 \\
-		\hline
-		Protocol & Full generational replacement \\
-		\hline
-		Mechanism & Tournament, k=5, e=0.02 \\
-		\hline
-		Elitism & 3 \\
-		\hline
-		Bits per number & 40\\
-	\end{tabular}
-	\caption{EA parameters for test case 5}
-\end{table}
+Generations: 250, Population size: 20, Mutation rate: 0.1, Crossover rate: 0.8, Protocol: Full generational replacement, Mechanism: Tournament, k=5, e=0.02, Elitism: 3, Bits per number: 40
 \subsubsection{End Results}\label{sec:test-case-5-results}
 This was one of those cases which probably ended up in a local maximum, since
 changing any variable slightly would plummet the fitness far down. I chose to
@@ -325,10 +220,10 @@ out low and then increases. Again this is a test case which could have ran
 longer, but trying to double the number of generations only gave an increase of
 about 0.02 which I felt was not good enough.
 \begin{table}
-	\begin{tabular}{c c c c c}
-		a & b & c & d & k \\
+	\begin{tabular}{c c c c c c}
+		a & b & c & d & k & Fitness\\
 		\hline
-		0.0313 & 0.1220 & -43.496 & 7.9364 & 0.0502
+		0.0313 & 0.1220 & -43.496 & 7.9364 & 0.0502 & 0.899
 	\end{tabular}
 	\caption{The neuron variables which gave the best solution for test case
 	5}
@@ -358,28 +253,7 @@ python src/main.py 400 5 50 --mutation=0.05 --cross_rate=0.9 full_generational
 sigma --elite=3 wdm convert_neuron neuron_plot training\
 data/izzy-train2.dat --bits_per_num=40
 \end{lstlisting}
-\begin{table}
-	\begin{tabular}{c c}
-		Variable & Value \\
-		\hline
-		Generations & 400 \\
-		\hline
-		Population size & 50 \\
-		\hline
-		Mutation rate & 0.05 \\
-		\hline
-		Crossover rate & 0.9 \\
-		\hline
-		Protocol & Full generational replacement \\
-		\hline
-		Mechanism & Sigma \\
-		\hline
-		Elitism & 3 \\
-		\hline
-		Bits per number & 40 \\
-	\end{tabular}
-	\caption{EA parameters for test case 6}
-\end{table}
+Generations: 400, Population size: 50, Mutation rate: 0.05, Crossover rate: 0.9, Protocol: Full generational replacement, Mechanism: Sigma, Elitism: 3, Bits per number: 40
 \subsubsection{End Results}\label{sec:test-case-6-results}
 This test case seemed quite hard for WDM. No good results no matter the settings
 tried which is very strange. The choice of going with Sigma scaling for this was
@@ -389,10 +263,10 @@ which came very close to each other and in the end I went with Sigma.
 The fitness plot for this is also very strange, which again does not help
 explain the results.
 \begin{table}
-	\begin{tabular}{c c c c c}
-		a & b & c & d & k \\
+	\begin{tabular}{c c c c c c}
+		a & b & c & d & k & Fitness\\
 		\hline
-		0.0118 & 0.0538 & -55.717 & 8.2982 & 0.0569
+		0.0118 & 0.0538 & -55.717 & 8.2982 & 0.0569 & 2.10
 	\end{tabular}
 	\caption{The neuron variables which gave the best solution for test case
 	6}
@@ -416,196 +290,247 @@ explain the results.
 In this test we are testing STDM with the test case
 \textit{izzy-train3.dat}.
 \subsubsection{EA Parameters}\label{sec:test-case-7-parameters}
-\begin{table}
-	\begin{tabular}{c c}
-		Variable & Value \\
-		\hline
-		Generations & X \\
-		\hline
-		Population size & X \\
-		\hline
-		Mutation rate & X \\
-		\hline
-		Crossover rate & X \\
-		\hline
-		Protocol & X \\
-		\hline
-		Mechanism & X \\
-		\hline
-		Elitism & X \\
-		\hline
-		Bits per number & \\
-	\end{tabular}
-	\caption{EA parameters for test case 7}
-\end{table}
+\begin{lstlisting}[frame=single, language=bash, caption=Command-line to
+replicate the results]
+python src/main.py 500 5 100 --mutation=0.05 --cross_rate=0.9 full_generational
+tournament --k=5 --e=0.02 --elite=3 stdm convert_neuron neuron_plot training\
+data/izzy-train3.dat --bits_per_num=25
+\end{lstlisting}
+Generations: 500, Population size: 100, Mutation rate: 0.05, Crossover rate: 0.9, Protocol: Full generational replacement, Mechanism: Tournament selection, k=5, e=0.02, Elitism: 3, Bits per number: 25
 \subsubsection{End Results}\label{sec:test-case-7-results}
+This was another one where STDM did quite good, but again could not match up the
+space between spikes completely. The fitness is quite good, and could possibly
+be better when run for much longer. Again the selection mechanism did not
+influence all that much and Tournament was selected a little at random after
+some testing.
 \begin{table}
-	\begin{tabular}{c c c c c}
-		a & b & c & d & k \\
+	\begin{tabular}{c c c c c c}
+		a & b & c & d & k & Fitness\\
+		\hline
+		0.0726 & 0.0872 & -42.132 & 3.8164 & 0.0409 & 0.73
 	\end{tabular}
+	\caption{The neuron variables which gave the best solution for test case
+	7}
 \end{table}
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=\textwidth]{../output/stdm_izzy_3_fitness.pdf}
+		\caption{Fitness progression for test case 7}
+		\label{fig:fitness-test-case-7}
+	\end{subfigure}%
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=\textwidth]{../output/stdm_izzy_3_spike.pdf}
+		\caption{Spike train comparison for test case 7}
+		\label{fig:spike-test-case-7}
+	\end{subfigure}
+	\caption{Test case 7 result}
+\end{figure}
 
 \subsection{Test Case 8}\label{sec:test-case-8}
 In this test we are testing SIDM with the test case
 \textit{izzy-train3.dat}.
 \subsubsection{EA Parameters}\label{sec:test-case-8-parameters}
-\begin{table}
-	\begin{tabular}{c c}
-		Variable & Value \\
-		\hline
-		Generations & X \\
-		\hline
-		Population size & X \\
-		\hline
-		Mutation rate & X \\
-		\hline
-		Crossover rate & X \\
-		\hline
-		Protocol & X \\
-		\hline
-		Mechanism & X \\
-		\hline
-		Elitism & X \\
-		\hline
-		Bits per number & \\
-	\end{tabular}
-	\caption{EA parameters for test case 8}
-\end{table}
+\begin{lstlisting}[frame=single, language=bash, caption=Command-line to
+replicate the results]
+python src/main.py 500 5 75 --mutation=0.1 --cross_rate=0.8 full_generational
+sigma --elite=3 sidm convert_neuron neuron_plot training\
+data/izzy-train3.dat --bits_per_num=30
+\end{lstlisting}
+Generations: 500, Population size: 75, Mutation rate: 0.1, Crossover rate: 0.8, Protocol: Full generational replacement, Mechanism: Sigma, Elitism: 3, Bits per number: 30
 \subsubsection{End Results}\label{sec:test-case-8-results}
+In this case we can see very much the same story as before. The population is
+somewhat homogeneous in the beginning, before it shoots up and becomes quite a bit
+better. The end result is quite good, but again we see that SIDM struggles with
+placing the spikes at precisely the spot.
 \begin{table}
-	\begin{tabular}{c c c c c}
-		a & b & c & d & k \\
+	\begin{tabular}{c c c c c c}
+		a & b & c & d & k & Fitness \\
+		\hline
+		0.0789 & 0.0985 & -30.949 & 9.2191 & 0.0412 & 0.976
 	\end{tabular}
+	\caption{The neuron variables which gave the best solution for test case
+	8}
 \end{table}
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=\textwidth]{../output/sidm_izzy_3_fitness.pdf}
+		\caption{Fitness progression for test case 8}
+		\label{fig:fitness-test-case-8}
+	\end{subfigure}%
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=\textwidth]{../output/sidm_izzy_3_spike.pdf}
+		\caption{Spike train comparison for test case 8}
+		\label{fig:spike-test-case-8}
+	\end{subfigure}
+	\caption{Test case 8 result}
+\end{figure}
 
 \subsection{Test Case 9}\label{sec:test-case-9}
 In this test we are testing WDM with the test case
 \textit{izzy-train3.dat}.
 \subsubsection{EA Parameters}\label{sec:test-case-9-parameters}
-\begin{table}
-	\begin{tabular}{c c}
-		Variable & Value \\
-		\hline
-		Generations & X \\
-		\hline
-		Population size & X \\
-		\hline
-		Mutation rate & X \\
-		\hline
-		Crossover rate & X \\
-		\hline
-		Protocol & X \\
-		\hline
-		Mechanism & X \\
-		\hline
-		Elitism & X \\
-		\hline
-		Bits per number & \\
-	\end{tabular}
-	\caption{EA parameters for test case 9}
-\end{table}
+\begin{lstlisting}[frame=single, language=bash, caption=Command-line to
+replicate the results]
+python src/main.py 250 5 100 --mutation=0.1 --cross_rate=0.8 full_generational
+tournament --k=5 --e=0.02 --elite=3 wdm convert_neuron neuron_plot training\
+data/izzy-train3.dat --bits_per_num=20
+\end{lstlisting}
+Generations: 250, Population size: 100, Mutation rate: 0.1, Crossover rate: 0.8, Protocol: Full generational replacement, Mechanism: Tournament selection, k=5, e=0.02, Elitism: 3, Bits per number: 20
 \subsubsection{End Results}\label{sec:test-case-9-results}
+This time WDM was again back up to from, it performed very well and the fitness
+grew very good in the short number of generations ran. For this the strange
+thing is that a low number of bits was very good combined with a large
+population. The large population is not that strange, but the low number of bits
+being good is a bit strange.
 \begin{table}
-	\begin{tabular}{c c c c c}
-		a & b & c & d & k \\
+	\begin{tabular}{c c c c c c}
+		a & b & c & d & k & Fitness \\
+		\hline
+		0.0838 & 0.1136 & -37.405 & 6.2404 & 0.0404 & 3.026
 	\end{tabular}
+	\caption{The neuron variables which gave the best solution for test case
+	9}
 \end{table}
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=\textwidth]{../output/wdm_izzy_3_fitness.pdf}
+		\caption{Fitness progression for test case 9}
+		\label{fig:fitness-test-case-9}
+	\end{subfigure}%
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=\textwidth]{../output/wdm_izzy_3_spike.pdf}
+		\caption{Spike train comparison for test case 9}
+		\label{fig:spike-test-case-9}
+	\end{subfigure}
+	\caption{Test case 9 result}
+\end{figure}
 
-\subsection{Test Case 10}\label{sec:test-case-10}
+\subsection{Test Case 10}\label{sec:test-case-11}
 In this test we are testing STDM with the test case
 \textit{izzy-train4.dat}.
-\subsubsection{EA Parameters}\label{sec:test-case-10-parameters}
-\begin{table}
-	\begin{tabular}{c c}
-		Variable & Value \\
-		\hline
-		Generations & X \\
-		\hline
-		Population size & X \\
-		\hline
-		Mutation rate & X \\
-		\hline
-		Crossover rate & X \\
-		\hline
-		Protocol & X \\
-		\hline
-		Mechanism & X \\
-		\hline
-		Elitism & X \\
-		\hline
-		Bits per number & \\
-	\end{tabular}
-	\caption{EA parameters for test case 10}
-\end{table}
+\subsubsection{EA Parameters}\label{sec:test-case-11-parameters}
+\begin{lstlisting}[frame=single, language=bash, caption=Command-line to
+replicate the results]
+python src/main.py 250 5 100 --mutation=0.1 --cross_rate=0.8 full_generational
+tournament --k=5 --e=0.02 --elite=3 stdm convert_neuron neuron_plot training\
+data/izzy-train4.dat --bits_per_num=20
+\end{lstlisting}
+Generations: 250, Population size: 100, Mutation rate: 0.1, Crossover rate: 0.8, Protocol: Full generational replacement, Mechanism: Tournament selection k=5, e=0.02, Elitism: 3, Bits per number: 20
 \subsubsection{End Results}\label{sec:test-case-10-results}
+With this one I was quite luck with one of the first tries. The large population
+size managed to create a good result right away. This is probably one of the
+major mistakes I have had in previous runs and not take a large population. From
+this run, which could just be lucky, it seems a bit like number of bits is not
+as important as the population size.
+
+The fitness graph also illustrate very well the inherent stagnation which could
+have been a problem if not for the large mutation used. We can easily see where
+there have been a favorable mutation which has improved the best individual.
 \begin{table}
-	\begin{tabular}{c c c c c}
-		a & b & c & d & k \\
+	\begin{tabular}{c c c c c c}
+		a & b & c & d & k & Fitness \\
+		\hline
+		0.0027 & 0.2811 & -45.365 & 7.7698 & 0.0667 & 1.414
 	\end{tabular}
+	\caption{The neuron variables which gave the best solution for test case
+	10}
 \end{table}
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=\textwidth]{../output/stdm_izzy_4_fitness.pdf}
+		\caption{Fitness progression for test case 10}
+		\label{fig:fitness-test-case-10}
+	\end{subfigure}%
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=\textwidth]{../output/stdm_izzy_4_spike.pdf}
+		\caption{Spike train comparison for test case 10}
+		\label{fig:spike-test-case-10}
+	\end{subfigure}
+	\caption{Test case 10 result}
+\end{figure}
 
 \subsection{Test Case 11}\label{sec:test-case-11}
 In this test we are testing SIDM with the test case
 \textit{izzy-train4.dat}.
 \subsubsection{EA Parameters}\label{sec:test-case-11-parameters}
-\begin{table}
-	\begin{tabular}{c c}
-		Variable & Value \\
-		\hline
-		Generations & X \\
-		\hline
-		Population size & X \\
-		\hline
-		Mutation rate & X \\
-		\hline
-		Crossover rate & X \\
-		\hline
-		Protocol & X \\
-		\hline
-		Mechanism & X \\
-		\hline
-		Elitism & X \\
-		\hline
-		Bits per number & \\
-	\end{tabular}
-	\caption{EA parameters for test case 11}
-\end{table}
+\begin{lstlisting}[frame=single, language=bash, caption=Command-line to
+replicate the results]
+python src/main.py 250 5 100 --mutation=0.1 --cross_rate=0.9 full_generational
+tournament --k=5 --e=0.02 --elite=3 sidm convert_neuron neuron_plot training\
+data/izzy-train4.dat --bits_per_num=25
+\end{lstlisting}
+Generations: 250, Population size: 100, Mutation rate: 0.1, Crossover rate: 0.9, Protocol: Full generational replacement, Mechanism: Tournament selection, Elitism: 3, Bits per number: 25
 \subsubsection{End Results}\label{sec:test-case-11-results}
+This is another quite good result for SIDM. The reason for this, again, might be
+random, but the technique behind SIDM also is a good fit for this spike train
+because there are some small gap spikes to start with and then there are some
+larger gaps which SIDM can "use" to perfect the distance and also placement,
+since there are not a whole lot of room to be displaced in.
 \begin{table}
-	\begin{tabular}{c c c c c}
-		a & b & c & d & k \\
+	\begin{tabular}{c c c c c c}
+		a & b & c & d & k & Fitness\\
+		\hline
+		0.0029 & 0.2074 & -49.351 & 8.4007 & 0.0699 & 2.846
 	\end{tabular}
+	\caption{The neuron variables which gave the best solution for test case
+	11}
 \end{table}
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=\textwidth]{../output/sidm_izzy_4_fitness.pdf}
+		\caption{Fitness progression for test case 11}
+		\label{fig:fitness-test-case-11}
+	\end{subfigure}%
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=\textwidth]{../output/sidm_izzy_4_spike.pdf}
+		\caption{Spike train comparison for test case 11}
+		\label{fig:spike-test-case-11}
+	\end{subfigure}
+	\caption{Test case 11 result}
+\end{figure}
 
 \subsection{Test Case 12}\label{sec:test-case-12}
 In this test we are testing WDM with the test case
 \textit{izzy-train4.dat}.
 \subsubsection{EA Parameters}\label{sec:test-case-12-parameters}
-\begin{table}
-	\begin{tabular}{c c}
-		Variable & Value \\
-		\hline
-		Generations & X \\
-		\hline
-		Population size & X \\
-		\hline
-		Mutation rate & X \\
-		\hline
-		Crossover rate & X \\
-		\hline
-		Protocol & X \\
-		\hline
-		Mechanism & X \\
-		\hline
-		Elitism & X \\
-		\hline
-		Bits per number & \\
-	\end{tabular}
-	\caption{EA parameters for test case 12}
-\end{table}
+\begin{lstlisting}[frame=single, language=bash, caption=Command-line to
+replicate the results]
+python src/main.py 500 5 100 --mutation=0.05 --cross_rate=0.8 full_generational
+tournament --k=5 --e=0.02 --elite=3 wdm convert_neuron neuron_plot training\
+data/izzy-train4.dat --bits_per_num=35
+\end{lstlisting}
+Generations: 500, Population size: 100, Mutation rate: 0.05, Crossover rate: 0.08, Protocol: Full generational replacement, Mechanism: Tournament selection, Elitism: 3, Bits per number: 35
 \subsubsection{End Results}\label{sec:test-case-12-results}
+This was again another good fit for WDM. WDM can get quite close to the target,
+but compared to the other two metrics it needs more generations and higher
+number of bits. The number of bits does make sense since WDM is more dependant
+on perfect fits than the two others. More generations is a bit stranger and if
+we look at the graph it is not that many improvements beyond the 300 mark.
 \begin{table}
-	\begin{tabular}{c c c c c}
-		a & b & c & d & k \\
+	\begin{tabular}{c c c c c c}
+		a & b & c & d & k & Fitness \\
+		\hline
+		0.0034 & 0.0115 & -45.429 & 8.2475 & 0.0689 & 2.779
 	\end{tabular}
+	\caption{The neuron variables which gave the best solution for test case
+	12}
 \end{table}
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=\textwidth]{../output/wdm_izzy_4_fitness.pdf}
+		\caption{Fitness progression for test case 12}
+		\label{fig:fitness-test-case-12}
+	\end{subfigure}%
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=\textwidth]{../output/wdm_izzy_4_spike.pdf}
+		\caption{Spike train comparison for test case 12}
+		\label{fig:spike-test-case-12}
+	\end{subfigure}
+	\caption{Test case 12 result}
+\end{figure}
